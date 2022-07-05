@@ -29,6 +29,7 @@ body {
   height: var(--board-size);
   flex-wrap: wrap;
   padding: 37px;
+  margin: 0 auto;
 }
 
 .cell {

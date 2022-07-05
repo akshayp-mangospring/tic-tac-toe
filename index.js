@@ -7,7 +7,7 @@ const getWinCombos = (() => {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
 
   return () => wc;
@@ -51,21 +51,31 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
   const oPlayer = Object.freeze({
     marker: 'o',
-    struct: '<div class="marker o-marker"></div>'
+    struct: '<div class="marker o-marker"></div>',
   });
   const xPlayer = Object.freeze({
     marker: 'x',
-    struct: '<div class="marker x-marker"></div>'
+    struct: '<div class="marker x-marker"></div>',
   });
 
   const gameBoard = document.getElementById('game-board');
   let currentPlayer = xPlayer;
 
+  const winImage = document.getElementById('success-pop');
+
+  winImage.addEventListener('click', () => {
+    location.reload();
+  });
+
   gameBoard.addEventListener('click', (e) => {
     const elem = e.target;
 
     //Don't perform action for already filled up cell or don't perform any action outside a cell
-    if (elem.classList.contains('filled-in') || !elem.classList.contains('cell')) return;
+    if (
+      elem.classList.contains('filled-in') ||
+      !elem.classList.contains('cell')
+    )
+      return;
 
     // Fill in the marker on DOM
     elem.appendChild(getDomElemFromStr(currentPlayer.struct));
@@ -80,13 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hasPlayerWon(gameState.getCells(), currentPlayer)) {
       // Declare Winner
       // Moving to async so as to let the DOM get painted before declaring a winner to the user.
+      winImage.style.display = 'flex';
+      winImage.appendChild(
+        getDomElemFromStr(
+          `<h1 class="game-status-text">${currentPlayer.marker.toUpperCase()} has Won the Game!</h1>`
+        )
+      );
       setTimeout(() => {
-        alert(`${currentPlayer.marker.toUpperCase()} has Won the Game!`);
         location.reload();
-      }, 0);
+      }, 5000);
 
-      // This return is essential because the page doesn't reload until all the alerts are shown.
-      // Also to prevent execution of further code to increase performance.
+      // This return prevent execution of further code to increase performance.
       return;
     } else {
       // Switch Turn
@@ -100,10 +114,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (gameState.getCells().every((el) => el !== null)) {
       // Declare Tie
       // Moving to async so as to let the DOM get painted before asking to play again.
+      winImage.classList.add('game-tied');
+      winImage.appendChild(
+        getDomElemFromStr(
+          `<h1 class="game-status-text">It's a tie! Play again!!</h1>`
+        )
+      );
       setTimeout(() => {
-        alert("It's a tie! Play again!");
         location.reload();
-      }, 0);
+      }, 5000);
     }
   });
 });

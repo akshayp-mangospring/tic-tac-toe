@@ -9,16 +9,18 @@ body {
   --board-size: max(min(100vh, 100vw), 300px);
   --cell-size: calc((var(--board-size) / 3) - 25px);
   --separator-size: max(calc(var(--board-size) * 0.005), 2px);
+  --shadow-size: calc(var(--separator-size) * 2.5);
+  --marker-size: calc((var(--cell-size) * 0.75) - var(--separator-size));
   --separator-color: #000;
   --shadow-color: #bdbdbd;
-  --shadow-size: calc(var(--separator-size) * 2.5);
   --x-color: #81d4fa;
   --o-color: #fa8072;
-  --marker-size: calc((var(--cell-size) * 0.75) - var(--separator-size));
+  --game-status-text-color: #191970;
 }
 
 .tic-tac-toe-board,
-.cell {
+.cell,
+.success-pop {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +32,6 @@ body {
   flex-wrap: wrap;
   padding: 37px;
   margin: 0 auto;
-  transform: rotate(-18deg);
 }
 
 .cell {
@@ -74,4 +75,29 @@ body {
 .o-marker {
   border-radius: 50%;
   background-color: var(--o-color);
+}
+
+.success-pop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url(./win.gif), rgba(255, 255, 255, 0.4);
+  background-position: center bottom, center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.game-status-text {
+  text-align: center;
+  color: var(--game-status-text-color);
+  font-size: 4rem;
+  font-family: monospace;
+}
+
+.success-pop.game-tied {
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
 }

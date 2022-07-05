@@ -52,10 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const oPlayer = Object.freeze({
     marker: 'o',
     struct: '<div class="marker o-marker"></div>',
+    name: 'Pink',
   });
   const xPlayer = Object.freeze({
     marker: 'x',
     struct: '<div class="marker x-marker"></div>',
+    name: 'Blue',
   });
 
   const gameBoard = document.getElementById('game-board');
@@ -93,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       winImage.style.display = 'flex';
       winImage.appendChild(
         getDomElemFromStr(
-          `<h1 class="game-status-text">${currentPlayer.marker.toUpperCase()} has Won the Game!</h1>`
+          `<h1 class="game-status-text">${currentPlayer.name} has Won the Game!</h1>`
         )
       );
       setTimeout(() => {

@@ -16,6 +16,7 @@ body {
   --x-color: #81d4fa;
   --o-color: #fa8072;
   --game-status-text-color: #191970;
+  --game-status-background-color: rgba(255, 255, 255, 0.4);
 }
 
 .tic-tac-toe-board,
@@ -84,7 +85,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url(./win.gif), rgba(255, 255, 255, 0.4);
+  background: url(./win.gif), var(--game-status-background-color);
   background-position: center bottom, center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -98,6 +99,6 @@ body {
 }
 
 .success-pop.game-tied {
-  background: rgba(255, 255, 255, 0.4);
   display: flex;
+  background: var(--game-status-background-color);
 }

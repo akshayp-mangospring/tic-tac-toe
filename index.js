@@ -61,9 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const gameBoard = document.getElementById('game-board');
-  let currentPlayer = xPlayer;
-
   const winImage = document.getElementById('success-pop');
+  let currentPlayer = xPlayer;
 
   winImage.addEventListener('click', () => {
     location.reload();
@@ -91,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (hasPlayerWon(gameState.getCells(), currentPlayer)) {
       // Declare Winner
-      // Moving to async so as to let the DOM get painted before declaring a winner to the user.
       winImage.style.display = 'flex';
       winImage.appendChild(
         getDomElemFromStr(
@@ -115,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (gameState.getCells().every((el) => el !== null)) {
       // Declare Tie
-      // Moving to async so as to let the DOM get painted before asking to play again.
       winImage.classList.add('game-tied');
       winImage.appendChild(
         getDomElemFromStr(

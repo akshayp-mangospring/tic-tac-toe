@@ -64,12 +64,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const winImage = document.getElementById('success-pop');
   let currentPlayer = xPlayer;
 
+  // Try prefetching the image at the start of the game
+  const img = new Image();
+  img.src =
+    'https://raw.githubusercontent.com/akshayp-mangospring/tic-tac-toe/main/win.gif';
+  img.onload = console.log('Loaded Image');
+
   winImage.addEventListener('click', () => {
     location.reload();
   });
 
   gameBoard.addEventListener('click', (e) => {
     const elem = e.target;
+    const { name, marker, struct } = currentPlayer;
 
     //Don't perform action for already filled up cell or don't perform any action outside a cell
     if (
@@ -79,12 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
 
     // Fill in the marker on DOM
-    elem.appendChild(getDomElemFromStr(currentPlayer.struct));
+    elem.appendChild(getDomElemFromStr(struct));
 
     // Update the marker in Game state
     gameState.setCell(
       Array.prototype.indexOf.call(elem.parentNode.children, elem),
-      currentPlayer.marker
+      marker
     );
     elem.classList.add('filled-in');
 
@@ -93,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       winImage.style.display = 'flex';
       winImage.appendChild(
         getDomElemFromStr(
-          `<h1 class="game-status-text">${currentPlayer.name} has Won the Game!</h1>`
+          `<h1 class="game-status-text">${name} has Won the Game!</h1>`
         )
       );
       setTimeout(() => {

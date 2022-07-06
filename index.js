@@ -64,11 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const winImage = document.getElementById('success-pop');
   let currentPlayer = xPlayer;
 
-  // Try prefetching the image at the start of the game
-  const img = new Image();
-  img.src =
-    'https://raw.githubusercontent.com/akshayp-mangospring/tic-tac-toe/main/win.gif';
-  img.onload = console.log('Loaded Image');
+  // Moved to Async since it should not hinder the loading of page
+  setTimeout(() => {
+    // Try prefetching the image at the start of the game
+    const img = new Image();
+    img.src =
+      'https://raw.githubusercontent.com/akshayp-mangospring/tic-tac-toe/main/win.gif';
+    img.onload = console.log('Loaded Image');
+  }, 2000);
 
   winImage.addEventListener('click', () => {
     location.reload();

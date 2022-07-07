@@ -1,0 +1,7 @@
+Add Readme file
+Add v/s Computer mode with Minimax algo
+Figure out how to get a dist folder working in Vite
+Deploy it on Server - Try to get it deployed somewhere other than Github pages since it has a lot of shortcomings. Maybe AWS or Azure or Netlify or DigitalOcean.
+Add test cases in Cypress for all modes of gameplay
+Add Online multi player mode with Sockets
+Dockerize this App

@@ -5,4 +5,10 @@ export const getDomElemFromStr = (str) => {
   return doc.body.firstElementChild;
 };
 
-export default getDomElemFromStr;
+export const reloadWindow = () => window.location.reload();
+
+export const reloadWindowOnTimeout = (t) => {
+  setTimeout(() => {
+    reloadWindow();
+  }, t);
+};

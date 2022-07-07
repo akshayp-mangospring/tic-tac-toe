@@ -86,7 +86,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("https://raw.githubusercontent.com/akshayp-mangospring/tic-tac-toe/main/win.gif"), var(--game-status-background-color);
+  background: url(./images/win.gif), var(--game-status-background-color);
   background-position: center bottom, center;
   background-repeat: no-repeat;
   background-size: contain;

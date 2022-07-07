@@ -11,6 +11,7 @@
     "no-console": "off"
   },
   "globals": {
+    "beforeEach": true,
     "Cypress": true,
     "cy": true,
     "describe": true,

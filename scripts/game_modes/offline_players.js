@@ -1,8 +1,8 @@
-import { getDomElemFromStr, reloadWindow, reloadWindowOnTimeout } from './utils/dom';
-import { initGame, hasPlayerWon } from './utils/game';
-import { xPlayer, oPlayer } from './constants';
+import { getDomElemFromStr, reloadWindow, reloadWindowOnTimeout } from '../utils/dom';
+import { initGame, hasPlayerWon } from '../utils/game';
+import { xPlayer, oPlayer } from '../constants';
 
-const twoPlayerGame = () => {
+const offlinePlayersGame = () => {
   const gameState = initGame();
   const gameBoard = document.getElementById('game-board');
   const winImage = document.getElementById('success-pop');
@@ -64,4 +64,4 @@ const twoPlayerGame = () => {
   });
 };
 
-export default twoPlayerGame;
+export default offlinePlayersGame;

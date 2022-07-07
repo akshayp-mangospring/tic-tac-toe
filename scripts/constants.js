@@ -9,3 +9,9 @@ export const xPlayer = Object.freeze({
   struct: '<div class="marker x-marker"></div>',
   name: 'Blue',
 });
+
+export const gameModes = Object.freeze({
+  ONLINE_PLAYER: 'online_player',
+  OFFLINE_COMPUTER: 'offline_computer',
+  OFFLINE_PLAYERS: 'offline_players',
+});

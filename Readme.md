@@ -1,4 +1,4 @@
-**This is a simple Tic-Tac-Toe game which you can play in the browser on all devices**
+**This is a simple Tic-Tac-Toe game built with vanilla HTML, CSS, JS which you can play in the browser on all devices**
 
 You can play the game on: https://akshayp-mangospring.github.io/tic-tac-toe
 

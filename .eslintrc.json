@@ -9,5 +9,11 @@
   },
   "rules": {
     "no-console": "off"
+  },
+  "globals": {
+    "Cypress": true,
+    "cy": true,
+    "describe": true,
+    "it": true
   }
 }

@@ -1,4 +1,8 @@
-import { getDomElemFromStr, reloadWindow, reloadWindowOnTimeout } from '../utils/dom';
+import {
+  getDomElemFromStr,
+  reloadWindow,
+  reloadWindowOnTimeout,
+} from '../utils/dom';
 import { initGame, hasPlayerWon } from '../utils/game';
 import { xPlayer, oPlayer } from '../constants';
 
@@ -18,9 +22,11 @@ const offlinePlayersGame = () => {
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (
-      elem.classList.contains('filled-in')
-      || !elem.classList.contains('cell')
-    ) return;
+      elem.classList.contains('filled-in') ||
+      !elem.classList.contains('cell')
+    ) {
+      return;
+    }
 
     // Fill in the marker on DOM
     elem.appendChild(getDomElemFromStr(struct));
@@ -28,7 +34,7 @@ const offlinePlayersGame = () => {
     // Update the marker in Game state
     gameState.setCell(
       Array.prototype.indexOf.call(elem.parentNode.children, elem),
-      marker,
+      marker
     );
     elem.classList.add('filled-in');
 
@@ -37,8 +43,8 @@ const offlinePlayersGame = () => {
       winImage.style.display = 'flex';
       winImage.appendChild(
         getDomElemFromStr(
-          `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
-        ),
+          `<h1 class="game-status-text">${name} has Won the Game!</h1>`
+        )
       );
       reloadWindowOnTimeout(5000);
       // This return prevent execution of further code to increase performance.
@@ -56,8 +62,8 @@ const offlinePlayersGame = () => {
       winImage.classList.add('game-tied');
       winImage.appendChild(
         getDomElemFromStr(
-          '<h1 class="game-status-text">It\'s a tie! Play again!!</h1>',
-        ),
+          '<h1 class="game-status-text">It\'s a tie! Play again!!</h1>'
+        )
       );
       reloadWindowOnTimeout(2000);
     }

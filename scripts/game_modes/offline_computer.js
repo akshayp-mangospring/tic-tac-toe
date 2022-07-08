@@ -1,5 +1,3 @@
-const offlineComputerGame = () => {
-
-};
+const offlineComputerGame = () => {};
 
 export default offlineComputerGame;

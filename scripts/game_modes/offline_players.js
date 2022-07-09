@@ -38,22 +38,27 @@ const offlinePlayersGame = () => {
     );
     elem.classList.add('filled-in');
 
-    const { hasWon, winCombo } = hasPlayerWon(gameState.getCells(), currentPlayer);
+    // Should compute a game winner based on the amount of filled up cells on the board
+    if (gameState.shouldComputeWinner()) {
+      const { hasWon, winCombo } = hasPlayerWon(gameState.getCells(), currentPlayer);
 
-    if (hasWon) {
-      // Declare Winner
-      strikeWonCells(winCombo);
+      if (hasWon) {
+        // Declare Winner
+        strikeWonCells(winCombo);
 
-      winImage.style.display = 'flex';
-      winImage.appendChild(
-        getDomElemFromStr(
-          `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
-        ),
-      );
-      reloadWindowOnTimeout(5000);
-      // This return prevent execution of further code to increase performance.
-      return;
+        winImage.style.display = 'flex';
+        winImage.appendChild(
+          getDomElemFromStr(
+            `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
+          ),
+        );
+        reloadWindowOnTimeout(5000);
+
+        // This return prevent execution of further code to increase performance.
+        return;
+      }
     }
+
     // Switch Turn
     if (currentPlayer === xPlayer) {
       currentPlayer = oPlayer;
@@ -61,7 +66,7 @@ const offlinePlayersGame = () => {
       currentPlayer = xPlayer;
     }
 
-    if (gameState.getCells().every((el) => el !== null)) {
+    if (gameState.isBoardFilled()) {
       // Declare Tie
       winImage.classList.add('game-tied');
       winImage.appendChild(

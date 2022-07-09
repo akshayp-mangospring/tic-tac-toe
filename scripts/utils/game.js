@@ -29,15 +29,8 @@ export const hasPlayerWon = (gameCells, { marker }) => {
 
   for (let i = 0; i < winCombos.length; i += 1) {
     const winCombo = winCombos[i];
-    let matchCount = 0;
 
-    for (let j = 0; j < winCombo.length; j += 1) {
-      const elem = winCombo[j];
-      if (gameCells[elem] !== marker) break;
-      matchCount += 1;
-    }
-
-    if (matchCount === 3) {
+    if (winCombo.every((el) => gameCells[el] === marker)) {
       return {
         hasWon: true,
         winCombo,
@@ -62,12 +55,18 @@ export const strikeWonCells = (winCombo) => {
 };
 
 export const initGame = () => {
-  const gs = Array(9).fill(null);
+  const rowSize = 3;
+  const boardSize = rowSize ** 2;
+  const gs = Array(boardSize).fill(null);
+  let cellsFilledCount = 0;
 
   return Object.freeze({
     getCells: () => gs,
     setCell: (i, v) => {
       gs[i] = v;
+      cellsFilledCount += 1;
     },
+    shouldComputeWinner: () => cellsFilledCount > Math.floor(boardSize / 2),
+    isBoardFilled: () => cellsFilledCount === boardSize,
   });
 };

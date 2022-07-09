@@ -1,3 +1,3 @@
-const onlinePlayerGame = () => {};
+const onlinePlayerGame = () => { };
 
 export default onlinePlayerGame;

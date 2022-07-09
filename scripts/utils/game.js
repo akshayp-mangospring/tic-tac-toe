@@ -9,6 +9,21 @@ const getWinCombos = () => Object.freeze([
   [2, 4, 6],
 ]);
 
+const getStrikeClass = (diff) => {
+  switch (diff) {
+    case 1:
+      return 'won-horizontal';
+    case 2:
+      return 'won-clock-diagonal';
+    case 3:
+      return 'won-vertical';
+    case 4:
+      return 'won-anticlock-diagonal';
+    default:
+      return '';
+  }
+};
+
 export const hasPlayerWon = (gameCells, { marker }) => {
   const winCombos = getWinCombos();
 
@@ -22,9 +37,28 @@ export const hasPlayerWon = (gameCells, { marker }) => {
       matchCount += 1;
     }
 
-    if (matchCount === 3) return true;
+    if (matchCount === 3) {
+      return {
+        hasWon: true,
+        winCombo,
+      };
+    }
   }
-  return false;
+
+  return {
+    hasWon: false,
+    winCombo: null,
+  };
+};
+
+export const strikeWonCells = (winCombo) => {
+  const boardCells = document.getElementsByClassName('cell');
+  const diff = winCombo[1] - winCombo[0];
+  const strikeClass = getStrikeClass(diff);
+
+  winCombo.forEach((i) => {
+    boardCells[i].classList.add(strikeClass);
+  });
 };
 
 export const initGame = () => {

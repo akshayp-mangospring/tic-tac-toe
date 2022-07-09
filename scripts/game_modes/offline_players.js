@@ -1,5 +1,5 @@
 import { getDomElemFromStr, reloadWindow, reloadWindowOnTimeout } from '../utils/dom';
-import { initGame, hasPlayerWon } from '../utils/game';
+import { initGame, strikeWonCells, hasPlayerWon } from '../utils/game';
 import { xPlayer, oPlayer } from '../constants';
 
 const offlinePlayersGame = () => {
@@ -32,8 +32,12 @@ const offlinePlayersGame = () => {
     );
     elem.classList.add('filled-in');
 
-    if (hasPlayerWon(gameState.getCells(), currentPlayer)) {
+    const { hasWon, winCombo } = hasPlayerWon(gameState.getCells(), currentPlayer);
+
+    if (hasWon) {
       // Declare Winner
+      strikeWonCells(winCombo);
+
       winImage.style.display = 'flex';
       winImage.appendChild(
         getDomElemFromStr(

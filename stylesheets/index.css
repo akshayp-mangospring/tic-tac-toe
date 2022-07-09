@@ -11,6 +11,9 @@ body {
   --separator-size: max(calc(var(--board-size) * 0.005), 2px);
   --shadow-size: calc(var(--separator-size) * 2.5);
   --marker-size: calc((var(--cell-size) * 0.75) - var(--separator-size));
+  --strike-height: calc(3 * var(--separator-size));
+  --diagonal-strike-width: calc(var(--board-size) / 2.25);
+  --straight-strike-width: 100%;
   --separator-color: #000;
   --shadow-color: #bdbdbd;
   --x-color: #81d4fa;
@@ -36,6 +39,7 @@ body {
 }
 
 .cell {
+  position: relative;
   width: var(--cell-size);
   height: var(--cell-size);
   cursor: pointer;
@@ -57,12 +61,44 @@ body {
   box-shadow: 0 0 var(--shadow-size) var(--shadow-size) var(--shadow-color);
 }
 
-.cell.filled-in {
+.filled-in {
   cursor: default;
 }
 
-.cell.filled-in:hover {
+.filled-in:hover {
   box-shadow: none;
+}
+
+.won-horizontal::before,
+.won-vertical::before,
+.won-clock-diagonal::before,
+.won-anticlock-diagonal::before {
+  content: '';
+  position: absolute;
+  height: var(--strike-height);
+  background-color: var(--separator-color);
+}
+
+.won-horizontal::before,
+.won-vertical::before {
+  width: var(--straight-strike-width);
+}
+
+.won-clock-diagonal::before,
+.won-anticlock-diagonal::before {
+  width: var(--diagonal-strike-width);
+}
+
+.won-vertical::before {
+  transform: rotate(90deg);
+}
+
+.won-clock-diagonal::before {
+  transform: rotate(135deg);
+}
+
+.won-anticlock-diagonal::before {
+  transform: rotate(45deg);
 }
 
 .marker {

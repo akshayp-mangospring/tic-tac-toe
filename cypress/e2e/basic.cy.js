@@ -1,7 +1,7 @@
 import { getHomePageLink } from '../data_utils';
 
-describe('Tic Tac Toe', () => {
-  const env = 'prod';
+describe('Tic Tac Toe basics', () => {
+  const env = Cypress.env('testEnv');
   const homePageLink = getHomePageLink(env);
 
   beforeEach(() => {

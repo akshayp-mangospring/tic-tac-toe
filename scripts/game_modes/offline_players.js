@@ -1,4 +1,8 @@
-import { getDomElemFromStr, reloadWindow, reloadWindowOnTimeout } from '../utils/dom';
+import {
+  getDomElemFromStr,
+  reloadWindow,
+  reloadWindowOnTimeout,
+} from '../utils/dom';
 import { initGame, strikeWonCells, hasPlayerWon } from '../utils/game';
 import { xPlayer, oPlayer } from '../constants';
 
@@ -20,7 +24,9 @@ const offlinePlayersGame = () => {
     if (
       elem.classList.contains('filled-in')
       || !elem.classList.contains('cell')
-    ) return;
+    ) {
+      return;
+    }
 
     // Fill in the marker on DOM
     elem.appendChild(getDomElemFromStr(struct));

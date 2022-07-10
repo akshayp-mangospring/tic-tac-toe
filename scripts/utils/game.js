@@ -1,6 +1,6 @@
-import { getDomElemFromStr, reloadWindowOnTimeout } from './index';
-import { gameTiedHeader } from '../constants';
+import { paintWinnerOnDom } from './dom';
 
+// Private functions
 const getWinCombos = () => Object.freeze([
   [0, 1, 2],
   [3, 4, 5],
@@ -12,22 +12,7 @@ const getWinCombos = () => Object.freeze([
   [2, 4, 6],
 ]);
 
-const getStrikeClass = (diff) => {
-  switch (diff) {
-    case 1:
-      return 'won-horizontal';
-    case 2:
-      return 'won-clock-diagonal';
-    case 3:
-      return 'won-vertical';
-    case 4:
-      return 'won-anticlock-diagonal';
-    default:
-      return '';
-  }
-};
-
-export const checkPlayerWon = (gameCells, { marker }) => {
+const checkPlayerWon = (gameCells, { marker }) => {
   const winCombos = getWinCombos();
   let playerWonStatus = {
     hasWon: false,
@@ -49,16 +34,7 @@ export const checkPlayerWon = (gameCells, { marker }) => {
   return playerWonStatus;
 };
 
-export const strikeWonCells = (winCombo) => {
-  const boardCells = document.getElementsByClassName('cell');
-  const diff = winCombo[1] - winCombo[0];
-  const strikeClass = getStrikeClass(diff);
-
-  winCombo.forEach((i) => {
-    boardCells[i].classList.add(strikeClass);
-  });
-};
-
+// Public exports
 export const setupGameState = () => {
   const rowSize = 3;
   const boardSize = rowSize ** 2;
@@ -76,49 +52,23 @@ export const setupGameState = () => {
   });
 };
 
-export const hasGameTied = (gameState, winImage) => {
-  if (gameState.isBoardFilled()) {
-    // Declare Tie
-    winImage.classList.add('game-tied');
-    winImage.appendChild(
-      getDomElemFromStr(gameTiedHeader),
-    );
-    reloadWindowOnTimeout(2000);
-    return true;
-  }
-  return false;
-};
-
-export const hasPlayerWon = (gameState, winImage, player) => {
+export const checkAndDeclareWinner = (gameState, player) => {
   // Should compute a game winner based on the amount of filled up cells on the board
   if (gameState.shouldComputeWinner()) {
-    const { name } = player;
     const { hasWon, winCombo } = checkPlayerWon(gameState.getCells(), player);
 
     if (hasWon) {
-      // Declare Winner
-      strikeWonCells(winCombo);
-
-      winImage.style.display = 'flex';
-      winImage.appendChild(
-        getDomElemFromStr(
-          `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
-        ),
-      );
-      reloadWindowOnTimeout(5000);
+      paintWinnerOnDom(winCombo, player);
       return true;
     }
   }
   return false;
 };
 
-export const placeMarkerInGame = (elem, gameState, marker, struct) => {
+export const updateMarkerinGame = (gameState, elem, marker) => {
   // Update the marker in Game state
   gameState.setCell(
     Array.prototype.indexOf.call(elem.parentNode.children, elem),
     marker,
   );
-
-  elem.appendChild(getDomElemFromStr(struct));
-  elem.classList.add('filled-in');
 };

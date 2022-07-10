@@ -1,9 +1,7 @@
 import { oPlayer, xPlayer } from '../../constants';
 import { getIndexOfAll, reloadWindow } from '../../utils';
-import {
-  hasGameTied, hasPlayerWon, placeMarkerInGame, setupGameState,
-} from '../../utils/game';
-import { isCellOccupied } from '../../utils/dom';
+import { isCellOccupied, paintTieOnDom, placeMarkerOnDom } from '../../utils/dom';
+import { checkAndDeclareWinner, setupGameState, updateMarkerinGame } from '../../utils/game';
 
 const offlineComputerHard = () => {
   const gameState = setupGameState();
@@ -28,27 +26,33 @@ const offlineComputerHard = () => {
 
   gameBoard.addEventListener('click', (e) => {
     const elem = e.target;
-    const { marker: humanMarker, struct: humanStruct } = humanPlayer;
-    const { marker: aiMarker, struct: aiStruct } = aiPlayer;
+    const { marker: humanMarker } = humanPlayer;
+    const { marker: aiMarker } = aiPlayer;
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (isCellOccupied(elem)) return;
 
     // Fill in the marker on for human DOM
-    placeMarkerInGame(elem, gameState, humanMarker, humanStruct);
+    updateMarkerinGame(gameState, elem, humanMarker);
+    placeMarkerOnDom(elem, humanPlayer);
 
-    if (hasPlayerWon(gameState, winImage, humanPlayer)) return;
+    if (checkAndDeclareWinner(gameState, humanPlayer)) return;
 
-    if (hasGameTied(gameState, winImage)) return;
+    // Declare Tie
+    if (gameState.isBoardFilled()) {
+      paintTieOnDom();
+      return;
+    }
 
     // Calculate the available positions on board to be filled up
     const unfilledCells = getIndexOfAll(gameState.getCells(), null);
-    const cellToMarkIndex = unfilledCells[calcMinimaxBestSpot(unfilledCells)];
+    const cellToMarkIndex = unfilledCells[calcMinimaxBestSpot()];
 
-    // Place marker in game based on auto generated
-    placeMarkerInGame(elem.parentNode.children[cellToMarkIndex], gameState, aiMarker, aiStruct);
+    // Place marker in game based on random vacant position availability
+    updateMarkerinGame(gameState, elem, aiMarker);
+    placeMarkerOnDom(elem.parentNode.children[cellToMarkIndex], aiPlayer);
 
-    if (hasPlayerWon(gameState, winImage, aiPlayer));
+    if (checkAndDeclareWinner(gameState, aiPlayer));
   });
 };
 

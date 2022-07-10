@@ -1,9 +1,7 @@
 import { oPlayer, xPlayer } from '../constants';
 import { reloadWindow } from '../utils';
-import { isCellOccupied } from '../utils/dom';
-import {
-  hasGameTied, hasPlayerWon, placeMarkerInGame, setupGameState,
-} from '../utils/game';
+import { isCellOccupied, paintTieOnDom, placeMarkerOnDom } from '../utils/dom';
+import { checkAndDeclareWinner, setupGameState, updateMarkerinGame } from '../utils/game';
 
 const offlinePlayersGame = () => {
   const gameState = setupGameState();
@@ -17,20 +15,24 @@ const offlinePlayersGame = () => {
 
   gameBoard.addEventListener('click', (e) => {
     const elem = e.target;
-    const { marker, struct } = currentPlayer;
+    const { marker } = currentPlayer;
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (isCellOccupied(elem)) return;
 
     // Fill in the marker on DOM
-    placeMarkerInGame(elem, gameState, marker, struct);
+    updateMarkerinGame(gameState, elem, marker);
+    placeMarkerOnDom(elem, currentPlayer);
 
-    if (hasPlayerWon(gameState, winImage, currentPlayer)) return;
+    if (checkAndDeclareWinner(gameState, currentPlayer)) return;
 
     // Switch Turn
     currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
 
-    hasGameTied(gameState, winImage);
+    // Declare Tie
+    if (gameState.isBoardFilled()) {
+      paintTieOnDom();
+    }
   });
 };
 

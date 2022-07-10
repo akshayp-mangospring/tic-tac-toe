@@ -6,8 +6,9 @@ Add test cases in Cypress for all modes of gameplay
   - Two Player mode: Done
   - Single Player mode with Minimax
   - Online Player mode
-Add basic AI after a player has played it's turn, the cell would be placed on a Random Empty cell - This will be considered as easy mode for v/s Computer. This will be without minimax - Done. Btw, it's very easy to play and win this. I need to introduce Minimax now.
-Add v/s Computer mode with Minimax algo
+Add v/s Computer mode without Minimax(Easy to Win) - Done
+Add v/s Computer mode with Minimax(Unbeatable) algo
+Add You Won & You Lost after game is over in v/s computer case
 Add support for Prefetching game over image
 Try to reduce the number of computations based on the location at which the latest marker was placed.
   - Corner cells: 3 combos to check

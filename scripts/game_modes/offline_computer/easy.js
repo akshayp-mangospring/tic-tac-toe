@@ -6,7 +6,7 @@ import {
   reloadWindowOnTimeout,
 } from '../../utils/dom';
 import { setupGameState, strikeWonCells, checkPlayerWon } from '../../utils/game';
-import { xPlayer, oPlayer } from '../../constants';
+import { gameTiedHeader, oPlayer, xPlayer } from '../../constants';
 
 const offlineComputerEasy = () => {
   const gameState = setupGameState();
@@ -31,9 +31,7 @@ const offlineComputerEasy = () => {
       // Declare Tie
       winImage.classList.add('game-tied');
       winImage.appendChild(
-        getDomElemFromStr(
-          '<h1 class="game-status-text">It\'s a tie! Play again!!</h1>',
-        ),
+        getDomElemFromStr(gameTiedHeader),
       );
       reloadWindowOnTimeout(2000);
       return true;

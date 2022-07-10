@@ -20,3 +20,7 @@ export const gameLevels = Object.freeze({
   EASY: 'easy',
   HARD: 'hard',
 });
+
+const gameTiedText = 'It\'s a tie! Play again!!';
+
+export const gameTiedHeader = `<h1 class="game-status-text">${gameTiedText}</h1>`;

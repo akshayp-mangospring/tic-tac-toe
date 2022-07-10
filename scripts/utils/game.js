@@ -68,7 +68,7 @@ export const initGame = () => {
       gs[i] = v;
       cellsFilledCount += 1;
     },
-    shouldComputeWinner: () => cellsFilledCount > Math.floor(boardSize / 2),
+    shouldComputeWinner: () => cellsFilledCount >= (rowSize * 2 - 1),
     isBoardFilled: () => cellsFilledCount === boardSize,
   });
 };

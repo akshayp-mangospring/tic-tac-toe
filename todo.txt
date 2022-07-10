@@ -7,6 +7,11 @@ Add test cases in Cypress for all modes of gameplay
   - Single Player mode with Minimax
   - Online Player mode
 Add v/s Computer mode with Minimax algo
+Try to reduce the number of computations based on the location at which the latest marker was placed.
+  - Corner cells: 3 combos to check
+  - Corner rows/columns middle cells: 2 combos to check
+  - Center cells: 4 combos to check for Odd sized board(9 cells)
+  - Center cells: 3 combos to check for Even sized board(16 cells)
 Deploy it on Server - Try to get it deployed somewhere other than Github pages since it has a lot of shortcomings. Maybe AWS or Azure or DigitalOcean or Netlify or Heroku.
 Add Online multi player mode with Sockets
 Dockerize this App

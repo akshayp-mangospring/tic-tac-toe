@@ -1,7 +1,9 @@
 import { oPlayer, xPlayer } from '../../constants';
 import { getIndexOfAll, getRandomNumberInRange, reloadWindow } from '../../utils';
-import { isCellOccupied, paintTieOnDom, placeMarkerOnDom } from '../../utils/dom';
-import { checkAndDeclareWinner, setupGameState, updateMarkerinGame } from '../../utils/game';
+import {
+  getChildIndexInParent, isCellOccupied, paintTieOnDom, placeMarkerOnDom,
+} from '../../utils/dom';
+import { checkAndDeclareWinner, setupGameState } from '../../utils/game';
 
 const offlineComputerEasy = () => {
   const gameState = setupGameState();
@@ -22,8 +24,8 @@ const offlineComputerEasy = () => {
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (isCellOccupied(elem)) return;
 
-    // Fill in the marker on for human DOM
-    updateMarkerinGame(gameState, elem, humanMarker);
+    // Fill in the marker for human on DOM
+    gameState.setCell(getChildIndexInParent(elem), humanMarker);
     placeMarkerOnDom(elem, humanPlayer);
 
     if (checkAndDeclareWinner(gameState, humanPlayer)) return;
@@ -39,7 +41,7 @@ const offlineComputerEasy = () => {
     const cellToMarkIndex = unfilledCells[getRandomNumberInRange(0, unfilledCells.length - 1)];
 
     // Place marker in game based on random vacant position availability
-    updateMarkerinGame(gameState, elem, aiMarker);
+    gameState.setCell(cellToMarkIndex, aiMarker);
     placeMarkerOnDom(elem.parentNode.children[cellToMarkIndex], aiPlayer);
 
     if (checkAndDeclareWinner(gameState, aiPlayer));

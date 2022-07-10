@@ -64,11 +64,3 @@ export const checkAndDeclareWinner = (gameState, player) => {
   }
   return false;
 };
-
-export const updateMarkerinGame = (gameState, elem, marker) => {
-  // Update the marker in Game state
-  gameState.setCell(
-    Array.prototype.indexOf.call(elem.parentNode.children, elem),
-    marker,
-  );
-};

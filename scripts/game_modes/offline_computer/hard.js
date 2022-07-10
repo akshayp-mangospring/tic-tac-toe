@@ -1,7 +1,9 @@
 import { oPlayer, xPlayer } from '../../constants';
 import { getIndexOfAll, reloadWindow } from '../../utils';
-import { isCellOccupied, paintTieOnDom, placeMarkerOnDom } from '../../utils/dom';
-import { checkAndDeclareWinner, setupGameState, updateMarkerinGame } from '../../utils/game';
+import {
+  getChildIndexInParent, isCellOccupied, paintTieOnDom, placeMarkerOnDom,
+} from '../../utils/dom';
+import { checkAndDeclareWinner, setupGameState } from '../../utils/game';
 
 const offlineComputerHard = () => {
   const gameState = setupGameState();
@@ -32,8 +34,8 @@ const offlineComputerHard = () => {
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (isCellOccupied(elem)) return;
 
-    // Fill in the marker on for human DOM
-    updateMarkerinGame(gameState, elem, humanMarker);
+    // Fill in the marker for human on DOM
+    gameState.setCell(getChildIndexInParent(elem), humanMarker);
     placeMarkerOnDom(elem, humanPlayer);
 
     if (checkAndDeclareWinner(gameState, humanPlayer)) return;
@@ -49,7 +51,7 @@ const offlineComputerHard = () => {
     const cellToMarkIndex = unfilledCells[calcMinimaxBestSpot(unfilledCells)];
 
     // Place marker in game based on random vacant position availability
-    updateMarkerinGame(gameState, elem, aiMarker);
+    gameState.setCell(cellToMarkIndex, aiMarker);
     placeMarkerOnDom(elem.parentNode.children[cellToMarkIndex], aiPlayer);
 
     if (checkAndDeclareWinner(gameState, aiPlayer));

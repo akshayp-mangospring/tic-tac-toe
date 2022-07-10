@@ -1,7 +1,9 @@
 import { oPlayer, xPlayer } from '../constants';
 import { reloadWindow } from '../utils';
-import { isCellOccupied, paintTieOnDom, placeMarkerOnDom } from '../utils/dom';
-import { checkAndDeclareWinner, setupGameState, updateMarkerinGame } from '../utils/game';
+import {
+  getChildIndexInParent, isCellOccupied, paintTieOnDom, placeMarkerOnDom,
+} from '../utils/dom';
+import { checkAndDeclareWinner, setupGameState } from '../utils/game';
 
 const offlinePlayersGame = () => {
   const gameState = setupGameState();
@@ -21,7 +23,7 @@ const offlinePlayersGame = () => {
     if (isCellOccupied(elem)) return;
 
     // Fill in the marker on DOM
-    updateMarkerinGame(gameState, elem, marker);
+    gameState.setCell(getChildIndexInParent(elem), marker);
     placeMarkerOnDom(elem, currentPlayer);
 
     if (checkAndDeclareWinner(gameState, currentPlayer)) return;

@@ -61,3 +61,5 @@ export const paintWinnerOnDom = (winCombo, { name }) => {
   );
   reloadWindowOnTimeout(5000);
 };
+
+export const getChildIndexInParent = (elem) => Array.prototype.indexOf.call(elem.parentNode.children, elem);

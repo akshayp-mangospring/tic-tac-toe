@@ -12,6 +12,14 @@ Try to reduce the number of computations based on the location at which the late
   - Corner rows/columns middle cells: 2 combos to check
   - Center cells: 4 combos to check for Odd sized board(9 cells)
   - Center cells: 3 combos to check for Even sized board(16 cells)
+Add Online multi player mode with Sockets.
+Make the board to be scalable like 4x4, 5x5, etc. With dynamic calculation of winner based on board size.
 Deploy it on Server - Try to get it deployed somewhere other than Github pages since it has a lot of shortcomings. Maybe AWS or Azure or DigitalOcean or Netlify or Heroku.
-Add Online multi player mode with Sockets
+Add a check whether an internet connnection exists, try to make it a PWA, so that player can play it offline on his own.
+  - Default mode of playing can be online
+  - If no internet or a player chooses to play offline then the mode should be switched from online to offline
+  - In offline mode the user can play v/s Computer or in `offline_players` mode.
+  The same model can be applied to snake and ladders or other games I'm going to develop as well.
 Dockerize this App
+Add SEO to the App so that it can be listed on Search Engines.
+Possibly monetize this App or publish the App as an npm package, so that it can be exported as an iFrame and imported in other Apps

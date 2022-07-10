@@ -1,17 +1,23 @@
-import { gameModes } from '../constants';
+import { gameLevels, gameModes } from '../constants';
 import onlinePlayerGame from './online_player';
-import offlineComputerGame from './offline_computer';
+import offlineComputerEasy from './offline_computer/easy';
+import offlineComputerHard from './offline_computer/hard';
 import offlinePlayersGame from './offline_players';
 
 const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
+const { EASY, HARD } = gameLevels;
 
-const initGame = (mode = OFFLINE_PLAYERS) => {
+const initGame = ({ mode = OFFLINE_PLAYERS, level = EASY }) => {
   switch (mode) {
     case ONLINE_PLAYER:
       onlinePlayerGame();
       break;
     case OFFLINE_COMPUTER:
-      offlineComputerGame();
+      if (level === EASY) {
+        offlineComputerEasy();
+      } else if (level === HARD) {
+        offlineComputerHard();
+      }
       break;
     case OFFLINE_PLAYERS:
       offlinePlayersGame();

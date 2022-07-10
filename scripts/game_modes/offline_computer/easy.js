@@ -4,11 +4,11 @@ import {
   getRandomNumberInRange,
   reloadWindow,
   reloadWindowOnTimeout,
-} from '../utils/dom';
-import { setupGameState, strikeWonCells, checkPlayerWon } from '../utils/game';
-import { xPlayer, oPlayer } from '../constants';
+} from '../../utils/dom';
+import { setupGameState, strikeWonCells, checkPlayerWon } from '../../utils/game';
+import { xPlayer, oPlayer } from '../../constants';
 
-const offlineComputerGame = () => {
+const offlineComputerEasy = () => {
   const gameState = setupGameState();
   const gameBoard = document.getElementById('game-board');
   const winImage = document.getElementById('success-pop');
@@ -98,4 +98,4 @@ const offlineComputerGame = () => {
   });
 };
 
-export default offlineComputerGame;
+export default offlineComputerEasy;

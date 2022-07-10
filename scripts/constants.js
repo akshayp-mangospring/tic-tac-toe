@@ -15,3 +15,8 @@ export const gameModes = Object.freeze({
   OFFLINE_COMPUTER: 'offline_computer',
   OFFLINE_PLAYERS: 'offline_players',
 });
+
+export const gameLevels = Object.freeze({
+  EASY: 'easy',
+  HARD: 'hard',
+});

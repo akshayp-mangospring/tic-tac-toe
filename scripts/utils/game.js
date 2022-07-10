@@ -26,22 +26,24 @@ const getStrikeClass = (diff) => {
 
 export const hasPlayerWon = (gameCells, { marker }) => {
   const winCombos = getWinCombos();
+  let playerWonStatus = {
+    hasWon: false,
+    winCombo: null,
+  };
 
   for (let i = 0; i < winCombos.length; i += 1) {
     const winCombo = winCombos[i];
 
     if (winCombo.every((el) => gameCells[el] === marker)) {
-      return {
+      playerWonStatus = {
         hasWon: true,
         winCombo,
       };
+      break;
     }
   }
 
-  return {
-    hasWon: false,
-    winCombo: null,
-  };
+  return playerWonStatus;
 };
 
 export const strikeWonCells = (winCombo) => {

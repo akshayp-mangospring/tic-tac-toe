@@ -1,6 +1,6 @@
 Add Readme file - Done
 Make the site minimally working with Github pages with `gh-pages` branch, by deploying only the dist folder in that branch - Done
-Figure out how to get a dist folder working in Vite - Somewhat done, but I still have to make tweaks in dist files to get the site working properly
+Figure out how to get a dist folder working in Vite - Done
 Display strike lines after the game has been won - Done
 Add test cases in Cypress for all modes of gameplay
   - Two Player mode: Done

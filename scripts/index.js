@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Can be used for development mode
     default:
-      initGame(OFFLINE_PLAYERS);
+      initGame(OFFLINE_COMPUTER);
       break;
   }
 });

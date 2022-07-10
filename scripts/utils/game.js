@@ -24,7 +24,7 @@ const getStrikeClass = (diff) => {
   }
 };
 
-export const hasPlayerWon = (gameCells, { marker }) => {
+export const checkPlayerWon = (gameCells, { marker }) => {
   const winCombos = getWinCombos();
   let playerWonStatus = {
     hasWon: false,
@@ -56,7 +56,7 @@ export const strikeWonCells = (winCombo) => {
   });
 };
 
-export const initGame = () => {
+export const setupGameState = () => {
   const rowSize = 3;
   const boardSize = rowSize ** 2;
   const gs = Array(boardSize).fill(null);

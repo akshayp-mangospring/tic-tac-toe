@@ -3,11 +3,11 @@ import {
   reloadWindow,
   reloadWindowOnTimeout,
 } from '../utils/dom';
-import { initGame, strikeWonCells, hasPlayerWon } from '../utils/game';
+import { setupGameState, strikeWonCells, checkPlayerWon } from '../utils/game';
 import { xPlayer, oPlayer } from '../constants';
 
 const offlinePlayersGame = () => {
-  const gameState = initGame();
+  const gameState = setupGameState();
   const gameBoard = document.getElementById('game-board');
   const winImage = document.getElementById('success-pop');
   let currentPlayer = xPlayer;
@@ -40,7 +40,7 @@ const offlinePlayersGame = () => {
 
     // Should compute a game winner based on the amount of filled up cells on the board
     if (gameState.shouldComputeWinner()) {
-      const { hasWon, winCombo } = hasPlayerWon(gameState.getCells(), currentPlayer);
+      const { hasWon, winCombo } = checkPlayerWon(gameState.getCells(), currentPlayer);
 
       if (hasWon) {
         // Declare Winner

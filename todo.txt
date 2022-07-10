@@ -7,6 +7,7 @@ Add test cases in Cypress for all modes of gameplay
   - Single Player mode with Minimax
   - Online Player mode
 Add v/s Computer mode without Minimax(Easy to Win) - Done
+Restructure code to be reused and made more readable - Done
 Add v/s Computer mode with Minimax(Unbeatable) algo
 Add You Won & You Lost after game is over in v/s computer case
 Add support for Prefetching game over image

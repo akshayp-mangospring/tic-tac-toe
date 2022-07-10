@@ -1,10 +1,8 @@
+import { reloadWindow } from '../utils/dom';
 import {
-  getDomElemFromStr,
-  reloadWindow,
-  reloadWindowOnTimeout,
-} from '../utils/dom';
-import { setupGameState, strikeWonCells, checkPlayerWon } from '../utils/game';
-import { gameTiedHeader, oPlayer, xPlayer } from '../constants';
+  hasGameTied, hasPlayerWon, placeMarkerInGame, setupGameState,
+} from '../utils/game';
+import { oPlayer, xPlayer } from '../constants';
 
 const offlinePlayersGame = () => {
   const gameState = setupGameState();
@@ -18,7 +16,7 @@ const offlinePlayersGame = () => {
 
   gameBoard.addEventListener('click', (e) => {
     const elem = e.target;
-    const { name, marker, struct } = currentPlayer;
+    const { marker, struct } = currentPlayer;
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (
@@ -29,51 +27,14 @@ const offlinePlayersGame = () => {
     }
 
     // Fill in the marker on DOM
-    elem.appendChild(getDomElemFromStr(struct));
+    placeMarkerInGame(elem, gameState, marker, struct);
 
-    // Update the marker in Game state
-    gameState.setCell(
-      Array.prototype.indexOf.call(elem.parentNode.children, elem),
-      marker,
-    );
-    elem.classList.add('filled-in');
-
-    // Should compute a game winner based on the amount of filled up cells on the board
-    if (gameState.shouldComputeWinner()) {
-      const { hasWon, winCombo } = checkPlayerWon(gameState.getCells(), currentPlayer);
-
-      if (hasWon) {
-        // Declare Winner
-        strikeWonCells(winCombo);
-
-        winImage.style.display = 'flex';
-        winImage.appendChild(
-          getDomElemFromStr(
-            `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
-          ),
-        );
-        reloadWindowOnTimeout(5000);
-
-        // This return prevent execution of further code to increase performance.
-        return;
-      }
-    }
+    if (hasPlayerWon(gameState, winImage, currentPlayer)) return;
 
     // Switch Turn
-    if (currentPlayer === xPlayer) {
-      currentPlayer = oPlayer;
-    } else {
-      currentPlayer = xPlayer;
-    }
+    currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
 
-    if (gameState.isBoardFilled()) {
-      // Declare Tie
-      winImage.classList.add('game-tied');
-      winImage.appendChild(
-        getDomElemFromStr(gameTiedHeader),
-      );
-      reloadWindowOnTimeout(2000);
-    }
+    hasGameTied(gameState, winImage);
   });
 };
 

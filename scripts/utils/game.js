@@ -1,3 +1,6 @@
+import { getDomElemFromStr, reloadWindowOnTimeout } from './dom';
+import { gameTiedHeader } from '../constants';
+
 const getWinCombos = () => Object.freeze([
   [0, 1, 2],
   [3, 4, 5],
@@ -71,4 +74,51 @@ export const setupGameState = () => {
     shouldComputeWinner: () => cellsFilledCount >= (rowSize * 2 - 1),
     isBoardFilled: () => cellsFilledCount === boardSize,
   });
+};
+
+export const hasGameTied = (gameState, winImage) => {
+  if (gameState.isBoardFilled()) {
+    // Declare Tie
+    winImage.classList.add('game-tied');
+    winImage.appendChild(
+      getDomElemFromStr(gameTiedHeader),
+    );
+    reloadWindowOnTimeout(2000);
+    return true;
+  }
+  return false;
+};
+
+export const hasPlayerWon = (gameState, winImage, player) => {
+  // Should compute a game winner based on the amount of filled up cells on the board
+  if (gameState.shouldComputeWinner()) {
+    const { name } = player;
+    const { hasWon, winCombo } = checkPlayerWon(gameState.getCells(), player);
+
+    if (hasWon) {
+      // Declare Winner
+      strikeWonCells(winCombo);
+
+      winImage.style.display = 'flex';
+      winImage.appendChild(
+        getDomElemFromStr(
+          `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
+        ),
+      );
+      reloadWindowOnTimeout(5000);
+      return true;
+    }
+  }
+  return false;
+};
+
+export const placeMarkerInGame = (elem, gameState, marker, struct) => {
+  // Update the marker in Game state
+  gameState.setCell(
+    Array.prototype.indexOf.call(elem.parentNode.children, elem),
+    marker,
+  );
+
+  elem.appendChild(getDomElemFromStr(struct));
+  elem.classList.add('filled-in');
 };

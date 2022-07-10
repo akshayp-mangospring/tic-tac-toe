@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     default:
       initGame({
         mode: OFFLINE_COMPUTER,
-        level: HARD,
+        level: EASY,
       });
       break;
   }

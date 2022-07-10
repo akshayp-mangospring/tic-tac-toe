@@ -1,11 +1,9 @@
+import { oPlayer, xPlayer } from '../../constants';
+import { getIndexOfAll, reloadWindow } from '../../utils';
 import {
-  getDomElemFromStr,
-  getIndexOfAll,
-  reloadWindow,
-  reloadWindowOnTimeout,
-} from '../../utils/dom';
-import { setupGameState, strikeWonCells, checkPlayerWon } from '../../utils/game';
-import { gameTiedHeader, oPlayer, xPlayer } from '../../constants';
+  hasGameTied, hasPlayerWon, placeMarkerInGame, setupGameState,
+} from '../../utils/game';
+import { isCellOccupied } from '../../utils/dom';
 
 const offlineComputerHard = () => {
   const gameState = setupGameState();
@@ -13,52 +11,6 @@ const offlineComputerHard = () => {
   const winImage = document.getElementById('success-pop');
   const humanPlayer = xPlayer;
   const aiPlayer = oPlayer;
-
-  const placeMarkerInGame = (elem, marker, struct) => {
-    elem.appendChild(getDomElemFromStr(struct));
-
-    // Update the marker in Game state
-    gameState.setCell(
-      Array.prototype.indexOf.call(elem.parentNode.children, elem),
-      marker,
-    );
-    elem.classList.add('filled-in');
-  };
-
-  const hasGameTied = () => {
-    if (gameState.isBoardFilled()) {
-      // Declare Tie
-      winImage.classList.add('game-tied');
-      winImage.appendChild(
-        getDomElemFromStr(gameTiedHeader),
-      );
-      reloadWindowOnTimeout(2000);
-      return true;
-    }
-    return false;
-  };
-
-  const hasPlayerWon = (player) => {
-    if (gameState.shouldComputeWinner()) {
-      const { name } = player;
-      const { hasWon, winCombo } = checkPlayerWon(gameState.getCells(), player);
-
-      if (hasWon) {
-        // Declare Winner
-        strikeWonCells(winCombo);
-
-        winImage.style.display = 'flex';
-        winImage.appendChild(
-          getDomElemFromStr(
-            `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
-          ),
-        );
-        reloadWindowOnTimeout(5000);
-        return true;
-      }
-    }
-    return false;
-  };
 
   const calcMinimaxBestSpot = (unfilledCells) => {
     console.log(unfilledCells);
@@ -80,28 +32,23 @@ const offlineComputerHard = () => {
     const { marker: aiMarker, struct: aiStruct } = aiPlayer;
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
-    if (
-      elem.classList.contains('filled-in')
-      || !elem.classList.contains('cell')
-    ) {
-      return;
-    }
+    if (isCellOccupied(elem)) return;
 
     // Fill in the marker on for human DOM
-    placeMarkerInGame(elem, humanMarker, humanStruct);
+    placeMarkerInGame(elem, gameState, humanMarker, humanStruct);
 
-    if (hasPlayerWon(humanPlayer)) return;
+    if (hasPlayerWon(gameState, winImage, humanPlayer)) return;
 
-    if (hasGameTied()) return;
+    if (hasGameTied(gameState, winImage)) return;
 
     // Calculate the available positions on board to be filled up
     const unfilledCells = getIndexOfAll(gameState.getCells(), null);
     const cellToMarkIndex = unfilledCells[calcMinimaxBestSpot(unfilledCells)];
 
     // Place marker in game based on auto generated
-    placeMarkerInGame(elem.parentNode.children[cellToMarkIndex], aiMarker, aiStruct);
+    placeMarkerInGame(elem.parentNode.children[cellToMarkIndex], gameState, aiMarker, aiStruct);
 
-    if (hasPlayerWon(aiPlayer));
+    if (hasPlayerWon(gameState, winImage, aiPlayer));
   });
 };
 

@@ -1,15 +1,9 @@
-import {
-  getIndexOfAll,
-  getRandomNumberInRange,
-  reloadWindow,
-} from '../../utils/dom';
-import {
-  hasGameTied,
-  hasPlayerWon,
-  placeMarkerInGame,
-  setupGameState,
-} from '../../utils/game';
 import { oPlayer, xPlayer } from '../../constants';
+import { getIndexOfAll, getRandomNumberInRange, reloadWindow } from '../../utils';
+import {
+  hasGameTied, hasPlayerWon, placeMarkerInGame, setupGameState,
+} from '../../utils/game';
+import { isCellOccupied } from '../../utils/dom';
 
 const offlineComputerEasy = () => {
   const gameState = setupGameState();
@@ -28,12 +22,7 @@ const offlineComputerEasy = () => {
     const { marker: aiMarker, struct: aiStruct } = aiPlayer;
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
-    if (
-      elem.classList.contains('filled-in')
-      || !elem.classList.contains('cell')
-    ) {
-      return;
-    }
+    if (isCellOccupied(elem)) return;
 
     // Fill in the marker on for human DOM
     placeMarkerInGame(elem, gameState, humanMarker, humanStruct);

@@ -1,4 +1,4 @@
-import { getDomElemFromStr, reloadWindowOnTimeout } from './dom';
+import { getDomElemFromStr, reloadWindowOnTimeout } from './index';
 import { gameTiedHeader } from '../constants';
 
 const getWinCombos = () => Object.freeze([

@@ -1,8 +1,9 @@
-import { reloadWindow } from '../utils/dom';
+import { oPlayer, xPlayer } from '../constants';
+import { reloadWindow } from '../utils';
+import { isCellOccupied } from '../utils/dom';
 import {
   hasGameTied, hasPlayerWon, placeMarkerInGame, setupGameState,
 } from '../utils/game';
-import { oPlayer, xPlayer } from '../constants';
 
 const offlinePlayersGame = () => {
   const gameState = setupGameState();
@@ -19,12 +20,7 @@ const offlinePlayersGame = () => {
     const { marker, struct } = currentPlayer;
 
     // Don't perform action for already filled up cell or don't perform any action outside a cell
-    if (
-      elem.classList.contains('filled-in')
-      || !elem.classList.contains('cell')
-    ) {
-      return;
-    }
+    if (isCellOccupied(elem)) return;
 
     // Fill in the marker on DOM
     placeMarkerInGame(elem, gameState, marker, struct);

@@ -28,17 +28,15 @@ const strikeWonCells = (winCombo) => {
 };
 
 // Public exports
-export const isCellOccupied = (el) => (el.classList.contains('filled-in')
-  || !el.classList.contains('cell'));
+export const isCellOccupied = (el) =>
+  el.classList.contains('filled-in') || !el.classList.contains('cell');
 
 export const paintTieOnDom = () => {
   const winImage = document.getElementById('success-pop');
 
   // Declare Tie
   winImage.classList.add('game-tied');
-  winImage.appendChild(
-    getDomElemFromStr(gameTiedHeader),
-  );
+  winImage.appendChild(getDomElemFromStr(gameTiedHeader));
   reloadWindowOnTimeout(2000);
 };
 
@@ -56,10 +54,11 @@ export const paintWinnerOnDom = (winCombo, { name }) => {
   winImage.style.display = 'flex';
   winImage.appendChild(
     getDomElemFromStr(
-      `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
-    ),
+      `<h1 class="game-status-text">${name} has Won the Game!</h1>`
+    )
   );
   reloadWindowOnTimeout(5000);
 };
 
-export const getChildIndexInParent = (elem) => Array.prototype.indexOf.call(elem.parentNode.children, elem);
+export const getChildIndexInParent = (elem) =>
+  Array.prototype.indexOf.call(elem.parentNode.children, elem);

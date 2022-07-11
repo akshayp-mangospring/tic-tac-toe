@@ -1,7 +1,14 @@
 import { oPlayer, xPlayer } from '../../constants';
-import { getIndexOfAll, getRandomNumberInRange, reloadWindow } from '../../utils';
 import {
-  getChildIndexInParent, isCellOccupied, paintTieOnDom, placeMarkerOnDom,
+  getIndexOfAll,
+  getRandomNumberInRange,
+  reloadWindow,
+} from '../../utils';
+import {
+  getChildIndexInParent,
+  isCellOccupied,
+  paintTieOnDom,
+  placeMarkerOnDom,
 } from '../../utils/dom';
 import { checkAndDeclareWinner, setupGameState } from '../../utils/game';
 
@@ -38,7 +45,8 @@ const offlineComputerEasy = () => {
 
     // Calculate the available positions on board to be filled up
     const unfilledCells = getIndexOfAll(gameState.getCells(), null);
-    const cellToMarkIndex = unfilledCells[getRandomNumberInRange(0, unfilledCells.length - 1)];
+    const cellToMarkIndex =
+      unfilledCells[getRandomNumberInRange(0, unfilledCells.length - 1)];
 
     // Place marker in game based on random vacant position availability
     gameState.setCell(cellToMarkIndex, aiMarker);

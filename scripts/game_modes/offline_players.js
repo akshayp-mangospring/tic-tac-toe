@@ -1,7 +1,10 @@
 import { oPlayer, xPlayer } from '../constants';
 import { reloadWindow } from '../utils';
 import {
-  getChildIndexInParent, isCellOccupied, paintTieOnDom, placeMarkerOnDom,
+  getChildIndexInParent,
+  isCellOccupied,
+  paintTieOnDom,
+  placeMarkerOnDom,
 } from '../utils/dom';
 import { checkAndDeclareWinner, setupGameState } from '../utils/game';
 

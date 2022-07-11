@@ -2,6 +2,10 @@ import { getDomElemFromStr, reloadWindowOnTimeout } from './index';
 import { gameTiedHeader } from '../constants';
 
 // Private functions
+const getSiblings = (el) => el.parentNode.children;
+const cellFilledIn = (el) => el.classList.contains('filled-in');
+const elemIsCell = (el) => el.classList.contains('cell');
+
 const getStrikeClass = (diff) => {
   switch (diff) {
     case 1:
@@ -28,8 +32,7 @@ const strikeWonCells = (winCombo) => {
 };
 
 // Public exports
-export const isCellOccupied = (el) =>
-  el.classList.contains('filled-in') || !el.classList.contains('cell');
+export const isCellOccupied = (el) => cellFilledIn(el) || !elemIsCell(el);
 
 export const paintTieOnDom = () => {
   const winImage = document.getElementById('success-pop');
@@ -54,11 +57,10 @@ export const paintWinnerOnDom = (winCombo, { name }) => {
   winImage.style.display = 'flex';
   winImage.appendChild(
     getDomElemFromStr(
-      `<h1 class="game-status-text">${name} has Won the Game!</h1>`
-    )
+      `<h1 class="game-status-text">${name} has Won the Game!</h1>`,
+    ),
   );
   reloadWindowOnTimeout(5000);
 };
 
-export const getChildIndexInParent = (elem) =>
-  Array.prototype.indexOf.call(elem.parentNode.children, elem);
+export const getChildIndexInParent = (el) => Array.prototype.indexOf.call(getSiblings(el), el);

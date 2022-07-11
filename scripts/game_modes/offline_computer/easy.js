@@ -45,8 +45,8 @@ const offlineComputerEasy = () => {
 
     // Calculate the available positions on board to be filled up
     const unfilledCells = getIndexOfAll(gameState.getCells(), null);
-    const cellToMarkIndex =
-      unfilledCells[getRandomNumberInRange(0, unfilledCells.length - 1)];
+    const randomEmptyCell = getRandomNumberInRange(0, unfilledCells.length - 1);
+    const cellToMarkIndex = unfilledCells[randomEmptyCell];
 
     // Place marker in game based on random vacant position availability
     gameState.setCell(cellToMarkIndex, aiMarker);

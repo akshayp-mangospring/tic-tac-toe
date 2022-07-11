@@ -25,9 +25,7 @@ export const getIndexOfAll = (arr, val) => {
   return indexes;
 };
 
-export const getRandomNumberInRange = (min, max) => {
-  const start = Math.ceil(min);
-  const end = Math.floor(max);
-
-  return Math.floor(Math.random() * (end - start + 1)) + start;
-};
+export const getRandomNumberInRange = (min, max) => (
+  Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1))
+    + Math.ceil(min)
+);

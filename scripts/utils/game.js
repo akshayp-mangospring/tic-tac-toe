@@ -1,4 +1,4 @@
-import { paintWinnerOnDom } from './dom';
+import { paintWinnerOnDom, paintTieOnDom } from './dom';
 
 // Private functions
 const getWinCombos = () => Object.freeze([
@@ -35,10 +35,10 @@ const checkPlayerWon = (gameCells, { marker }) => {
 };
 
 // Public exports
-export const setupGameState = () => {
-  const rowSize = 3;
+export const setupGameState = (rowSize = 3) => {
   const boardSize = rowSize ** 2;
   const gs = Array(boardSize).fill(null);
+  const minCellsToFill = rowSize * 2 - 1;
   let cellsFilledCount = 0;
 
   return Object.freeze({
@@ -47,7 +47,7 @@ export const setupGameState = () => {
       gs[i] = v;
       cellsFilledCount += 1;
     },
-    shouldComputeWinner: () => cellsFilledCount >= rowSize * 2 - 1,
+    shouldComputeWinner: () => cellsFilledCount >= minCellsToFill,
     isBoardFilled: () => cellsFilledCount === boardSize,
   });
 };
@@ -61,6 +61,15 @@ export const checkAndDeclareWinner = (gameState, player) => {
       paintWinnerOnDom(winCombo, player);
       return true;
     }
+  }
+  return false;
+};
+
+export const checkAndDeclareTie = (gameState) => {
+  // Check if the complete board is filled
+  if (gameState.isBoardFilled()) {
+    paintTieOnDom();
+    return true;
   }
   return false;
 };

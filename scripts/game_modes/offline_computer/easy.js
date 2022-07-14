@@ -7,10 +7,9 @@ import {
 import {
   getChildIndexInParent,
   isCellOccupied,
-  paintTieOnDom,
   placeMarkerOnDom,
 } from '../../utils/dom';
-import { checkAndDeclareWinner, setupGameState } from '../../utils/game';
+import { checkAndDeclareTie, checkAndDeclareWinner, setupGameState } from '../../utils/game';
 
 const offlineComputerEasy = () => {
   const gameState = setupGameState();
@@ -37,11 +36,7 @@ const offlineComputerEasy = () => {
 
     if (checkAndDeclareWinner(gameState, humanPlayer)) return;
 
-    // Declare Tie
-    if (gameState.isBoardFilled()) {
-      paintTieOnDom();
-      return;
-    }
+    if (checkAndDeclareTie(gameState)) return;
 
     // Calculate the available positions on board to be filled up
     const unfilledCells = getIndexOfAll(gameState.getCells(), null);

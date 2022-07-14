@@ -3,10 +3,9 @@ import { reloadWindow } from '../utils';
 import {
   getChildIndexInParent,
   isCellOccupied,
-  paintTieOnDom,
   placeMarkerOnDom,
 } from '../utils/dom';
-import { checkAndDeclareWinner, setupGameState } from '../utils/game';
+import { checkAndDeclareTie, checkAndDeclareWinner, setupGameState } from '../utils/game';
 
 const offlinePlayersGame = () => {
   const gameState = setupGameState();
@@ -34,10 +33,7 @@ const offlinePlayersGame = () => {
     // Switch Turn
     currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
 
-    // Declare Tie
-    if (gameState.isBoardFilled()) {
-      paintTieOnDom();
-    }
+    checkAndDeclareTie(gameState);
   });
 };
 

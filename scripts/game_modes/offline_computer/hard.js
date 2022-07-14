@@ -52,7 +52,7 @@ const offlineComputerHard = () => {
     gameState.setCell(cellToMarkIndex, aiMarker);
     placeMarkerOnDom(elem.parentNode.children[cellToMarkIndex], aiPlayer);
 
-    if (checkAndDeclareWinner(gameState, aiPlayer));
+    checkAndDeclareWinner(gameState, aiPlayer);
   });
 };
 

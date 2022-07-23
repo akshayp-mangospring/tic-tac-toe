@@ -6,13 +6,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic-Tac-Toe</title>
-  
   <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATzwNMKd+HJfapSXZ4aon+eGqJ/japSXYp34dllA9DjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbFAQJsIUemuGqJ/3hqif/4aon/+GqJ//hqif/4aon/+GqJ//hqif9sYYemRwVBAgAAAAAAAAAAAAAAAAbFAQJyZciweGqJ//hqif/4aon/+GqJ//hqif/4aon/+a5Tv/hqif/4aon/+GqJ//KmCPAHBUECAAAAAAAAAAAsIUemuGqJ//hqif/4aon/+/Ukv/y3Kb/4asr/+i+Wv/y2qL/4aon/+GqJ//hqif/4aon/7KHHpkAAAAAUDwNMeGqJ/3hqif/4aon/+W2R//y2qH/79SS/+nBY//w1pf/68dz/+OwNv/ov13/5bVE/+GqJ//hqif9Uj4OMKd+HZjhqif/4aon/+GqJ//jsDj/9+jG//fpyP/ktEL/9+rL/+SzP//jsjv//v38/+zKev/hqif/4aon/6qAHZbapSXa4aon/+GqJ//z3av/7Mp4/+a6Uf/ltkf/4asr//rz4f/hqif/79ST//fpyf/ktEH/4aon/+GqJ//cpibY4aon+uGqJ//hqif/4awt/+3Mfv/36sv/9OK2/+7RjP/25b7/4aon/+GqJ//jsDj/4q0v/+GqJ//hqif/4aon+OGqJ/rhqif/4aon/+GsLv/ov13/4ass/+W3Sv/04LL//Pfs//fqzP/w1JT/571Y/+GqKf/hqif/4aon/+GqJ/nbpSba4aon/+GqJ//hrCz/+fDa//bnwv/hqyr/7tCI/+3Mf//jsTr/68Zw//HYnP/z3an/4q0x/+GqJ//cpibZqYAdmOGqJ//hqif/5LM+//bnw//04LD/4aon//DWl//qxW3/6L5b//boxf/nvVf/4aon/+GqJ//hqif/q4Edl1I+DjLhqif+4aon/+GqKP/hqyv/4q0x/+GqJ//w15r/6cJl//XjuP/nvFf/9eS8/+GqJ//hqif/4aon/VRADjAAAAAAs4cfm+GqJ//hqif/4aon/+GqJ//hqif/8NWV/+nBY//w1ZX/9ufC/+/Ukv/hqif/4aon/7WIH5oAAAAAAAAAAB0WBQnKmSPC4aon/+GqJ//hqif/4aon/+nDZ//ltkf/4asq/+e7U//hqij/4aon/8yaI8EeFwUJAAAAAAAAAAAAAAAAHhYFCbSIH5vhqif+4aon/+GqJ//hqif/4aon/+GqJ//hqif/4aon/bWJH5oeFwUJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVD8OMquBHZjcpiba4aon+uGqJ/rcpibarIIdmFVADjEAAAAAAAAAAAAAAAAAAAAA+B8AAOAHAADAAwAAgAEAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADgBwAA+B8AAA==">
-  <script type="module" crossorigin src="./assets/index.69191365.js"></script>
-  <link rel="stylesheet" href="./assets/index.89984dc6.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  
+  <script type="module" crossorigin src="./assets/index.fa7ccc04.js"></script>
+  <link rel="stylesheet" href="./assets/index.50343089.css">
 </head>
 
-<body>
+<body class="container">
+  <div class="position-relative">
+    <h1 class="text-center mt-1 mb-2">Tic-Tac-Toe</h1>
+    <div class="d-flex position-absolute d-none game-mode-select-wrapper">
+      <span>V/s Computer</span>
+      <div class="toggle-switch on ms-1">
+        <div class="switch-button"></div>
+      </div>
+    </div>
+  </div>
   <div id="game-board" class="tic-tac-toe-board">
     <div class="cell"></div>
     <div class="cell"></div>
@@ -25,6 +36,16 @@
     <div class="cell"></div>
   </div>
   <div id="success-pop" class="success-pop"></div>
+  <div id="internet-connection-status"
+    class="toast align-items-center text-white bg-primary border-0 position-fixed internet-connection-status"
+    role="alert" aria-live="assertive" aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body"></div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   
 </body>
 

@@ -21,6 +21,11 @@ export const gameLevels = Object.freeze({
   HARD: 'hard',
 });
 
+export const connectionStatus = Object.freeze({
+  ONLINE: 'online',
+  OFFLINE: 'offline',
+});
+
 const gameTiedText = "It's a tie! Play again!!";
 
 export const gameTiedHeader = `<h1 class="game-status-text">${gameTiedText}</h1>`;

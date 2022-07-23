@@ -6,7 +6,8 @@
 }
 
 body {
-  --board-size: max(min(100vh, 100vw), 300px);
+  --topnav-size: 70px;
+  --board-size: max(min(calc(100vh - var(--topnav-size)), calc(100vw - var(--topnav-size))), 300px);
   --cell-size: calc((var(--board-size) / 3) - 25px);
   --separator-size: max(calc(var(--board-size) * 0.005), 2px);
   --shadow-size: calc(var(--separator-size) * 2.5);
@@ -14,12 +15,16 @@ body {
   --strike-height: calc(3 * var(--separator-size));
   --diagonal-strike-width: calc(var(--board-size) / 2.25);
   --straight-strike-width: 100%;
+  --toggle-switch-border-size: 2px;
+  --toggle-switch-size: 22px;
   --separator-color: #000;
   --shadow-color: #bdbdbd;
   --x-color: #81d4fa;
   --o-color: #fa8072;
   --game-status-text-color: #191970;
   --game-status-background-color: rgba(255, 255, 255, 0.4);
+  --toggle-switch-background: #fff;
+  --toggle-switch-on-background: #30d158;
 }
 
 .tic-tac-toe-board,
@@ -138,4 +143,66 @@ body {
 .success-pop.game-tied {
   display: flex;
   background: var(--game-status-background-color);
+}
+
+.toggle-switch {
+  cursor: pointer;
+  width: 50px;
+  height: 26px;
+  border-radius: 15px;
+  border: var(--toggle-switch-border-size) solid rgb(209, 209, 214);
+}
+
+.toggle-switch.on {
+  background: var(--toggle-switch-on-background);
+  border: var(--toggle-switch-border-size) solid var(--toggle-switch-on-background);
+}
+
+@keyframes switch-on {
+  from {
+    margin-left: calc((var(--toggle-switch-border-size) * -1) + 1px);
+  }
+
+  to {
+    margin-left: calc(100% - var(--toggle-switch-size) + 1px);
+  }
+}
+
+@keyframes switch-off {
+  from {
+    margin-left: calc(100% - var(--toggle-switch-size) + 1px);
+  }
+
+  to {
+    margin-left: calc((var(--toggle-switch-border-size) * -1) + 1px);
+  }
+}
+
+.switch-button {
+  width: var(--toggle-switch-size);
+  height: var(--toggle-switch-size);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2),
+  0 2px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 50%;
+  background: var(--toggle-switch-background);
+  margin-left: calc((var(--toggle-switch-border-size) * -1) + 1px);
+  animation-name: switch-off;
+  animation-duration: 0.25s;
+}
+
+.toggle-switch.on .switch-button {
+  animation-name: switch-on;
+  animation-duration: 0.25s;
+  margin-left: calc(100% - var(--toggle-switch-size) + 1px);
+}
+
+.game-mode-select-wrapper {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.internet-connection-status {
+  bottom: 20px;
+  right: 20px;
 }

@@ -1,5 +1,5 @@
 import initGame from './game_modes';
-import { gameLevels, gameModes } from './constants';
+import { connectionStatus, gameLevels, gameModes } from './constants';
 
 document.addEventListener('DOMContentLoaded', () => {
   const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
@@ -44,4 +44,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       break;
   }
+});
+
+const { ONLINE, OFFLINE } = connectionStatus;
+
+function showConnectionStatus({ type }, txt) {
+  const statusToast = document.getElementById('internet-connection-status');
+  const showClass = 'show';
+
+  statusToast.querySelector('.toast-body').innerText = txt;
+  statusToast.classList.add(showClass);
+
+  if (type === ONLINE) {
+    setTimeout(() => {
+      statusToast.classList.remove(showClass);
+    }, 2000);
+  }
+}
+
+window.addEventListener(OFFLINE, (e) => {
+  showConnectionStatus(e, 'Lost connection', OFFLINE);
+});
+
+window.addEventListener(ONLINE, (e) => {
+  showConnectionStatus(e, 'Back online');
 });

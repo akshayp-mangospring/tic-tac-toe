@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/akshayp-mangospring/tic-tac-toe#readme",
   "dependencies": {
+    "socket.io-client": "^4.5.1",
     "vite": "^2.9.13"
   },
   "devDependencies": {

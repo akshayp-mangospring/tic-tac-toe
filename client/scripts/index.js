@@ -1,7 +1,12 @@
 import initGame from './game_modes';
 import { connectionStatus, gameLevels, gameModes } from './constants';
+import { io } from 'socket.io-client';
+
 
 document.addEventListener('DOMContentLoaded', () => {
+  const socket = io.connect('http://localhost:4000');
+  window.socket = socket;
+
   const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
   const { EASY, HARD } = gameLevels;
 
@@ -39,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Can be used for development mode
     default:
       initGame({
-        mode: OFFLINE_COMPUTER,
+        mode: OFFLINE_PLAYERS,
         level: EASY,
       });
       break;

@@ -24,9 +24,13 @@ const offlinePlayersGame = () => {
     // Don't perform action for already filled up cell or don't perform any action outside a cell
     if (isCellOccupied(elem)) return;
 
+    const position = getChildIndexInParent(elem);
+
     // Fill in the marker on DOM
-    gameState.setCell(getChildIndexInParent(elem), marker);
+    gameState.setCell(position, marker);
     placeMarkerOnDom(elem, currentPlayer);
+
+    window.socket.emit('place_marker', { position });
 
     if (checkAndDeclareWinner(gameState, currentPlayer)) return;
 

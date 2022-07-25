@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
     console.log('=======================');
     console.log(position);
     console.log('=======================');
-    io.emit('marker_placed', {
+    socket.broadcast.emit('marker_placed', {
       success: 200,
       position,
     });

@@ -1,3 +1,5 @@
+export const serverUrl = 'http://localhost:4000';
+
 export const oPlayer = Object.freeze({
   marker: 'o',
   struct: '<div class="marker o-marker"></div>',

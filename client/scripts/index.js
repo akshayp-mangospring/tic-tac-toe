@@ -1,23 +1,17 @@
 import initGame from './game_modes';
-import { connectionStatus, gameLevels, gameModes } from './constants';
+import { connectionStatus, gameLevels, gameModes, serverUrl } from './constants';
 import { io } from 'socket.io-client';
 
+const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
+const { EASY, HARD } = gameLevels;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const socket = io.connect('http://localhost:4000');
-  window.socket = socket;
-
-  const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
-  const { EASY, HARD } = gameLevels;
-
   switch (window.location.search) {
     // Ideally this should be the default mode based on availability of the internet
     // We need not provide query params.
     // This needs to be fixed. Case needs to be ```case '':```
     case `${ONLINE_PLAYER}=true`:
-      initGame({
-        mode: ONLINE_PLAYER,
-      });
+      initOnlineGame();
       break;
 
     // Offline Modes:
@@ -43,10 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Can be used for development mode
     default:
-      initGame({
-        mode: OFFLINE_PLAYERS,
-        level: EASY,
-      });
+      initOnlineGame();
       break;
   }
 });
@@ -65,6 +56,14 @@ function showConnectionStatus({ type }, txt) {
       statusToast.classList.remove(showClass);
     }, 2000);
   }
+}
+
+function initOnlineGame() {
+  window.socket = io.connect(serverUrl);
+  initGame({
+    mode: ONLINE_PLAYER,
+    level: EASY,
+  });
 }
 
 window.addEventListener(OFFLINE, (e) => {

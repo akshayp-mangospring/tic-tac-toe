@@ -30,8 +30,6 @@ const offlinePlayersGame = () => {
     gameState.setCell(position, marker);
     placeMarkerOnDom(elem, currentPlayer);
 
-    window.socket.emit('place_marker', { position });
-
     if (checkAndDeclareWinner(gameState, currentPlayer)) return;
 
     // Switch Turn

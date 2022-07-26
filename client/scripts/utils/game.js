@@ -42,20 +42,20 @@ export const setupGameState = (rowSize = 3) => {
   let cellsFilledCount = 0;
 
   return Object.freeze({
-    getCells: () => gs,
+    cells: gs,
     setCell: (i, v) => {
       gs[i] = v;
       cellsFilledCount += 1;
     },
-    shouldComputeWinner: () => cellsFilledCount >= minCellsToFill,
-    isBoardFilled: () => cellsFilledCount === boardSize,
+    canComputeWinner: cellsFilledCount >= minCellsToFill,
+    isBoardFilled: cellsFilledCount === boardSize,
   });
 };
 
-export const checkAndDeclareWinner = (gameState, player) => {
+export const checkAndDeclareWinner = ({ canComputeWinner, cells }, player) => {
   // Should compute a game winner based on the amount of filled up cells on the board
-  if (gameState.shouldComputeWinner) {
-    const { hasWon, winCombo } = checkPlayerWon(gameState.getCells, player);
+  if (canComputeWinner) {
+    const { hasWon, winCombo } = checkPlayerWon(cells, player);
 
     if (hasWon) {
       paintWinnerOnDom(winCombo, player);
@@ -65,9 +65,9 @@ export const checkAndDeclareWinner = (gameState, player) => {
   return false;
 };
 
-export const checkAndDeclareTie = (gameState) => {
+export const checkAndDeclareTie = ({ isBoardFilled }) => {
   // Check if the complete board is filled
-  if (gameState.isBoardFilled) {
+  if (isBoardFilled) {
     paintTieOnDom();
     return true;
   }

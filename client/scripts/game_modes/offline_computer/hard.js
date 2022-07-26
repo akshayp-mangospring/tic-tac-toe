@@ -45,7 +45,7 @@ const offlineComputerHard = () => {
     if (checkAndDeclareTie(gameState)) return;
 
     // Calculate the available positions on board to be filled up
-    const unfilledCells = getIndexOfAll(gameState.getCells(), null);
+    const unfilledCells = getIndexOfAll(gameState.cells, null);
     const cellToMarkIndex = unfilledCells[calcMinimaxBestSpot(unfilledCells)];
 
     // Place marker in game based on random vacant position availability

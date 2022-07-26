@@ -29,12 +29,12 @@ const setupGameState = (rowSize = 3) => {
   let cellsFilledCount = 0;
 
   return Object.freeze({
-    getCells: gs,
+    cells: gs,
     setCell: (i, v) => {
       gs[i] = v;
       cellsFilledCount += 1;
     },
-    shouldComputeWinner: cellsFilledCount >= minCellsToFill,
+    canComputeWinner: cellsFilledCount >= minCellsToFill,
     isBoardFilled: cellsFilledCount === boardSize,
   });
 };
@@ -60,8 +60,8 @@ io.on('connection', (socket) => {
     io.emit('marker_placed', {
       currentPlayer,
       gameState: {
-        getCells: gameState.getCells,
-        shouldComputeWinner: gameState.shouldComputeWinner,
+        cells: gameState.cells,
+        canComputeWinner: gameState.canComputeWinner,
         isBoardFilled: gameState.isBoardFilled,
       },
       position,

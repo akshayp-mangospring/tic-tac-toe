@@ -1,6 +1,9 @@
 import { paintWinnerOnDom, paintTieOnDom } from './dom';
 
 // Private functions
+
+// This constant to be removed
+// Should be imported from shared directory
 const getWinCombos = () => Object.freeze([
   [0, 1, 2],
   [3, 4, 5],
@@ -35,6 +38,9 @@ const checkPlayerWon = (gameCells, { marker }) => {
 };
 
 // Public exports
+
+// This constant to be removed
+// Should be imported from shared directory
 export const setupGameState = (rowSize = 3) => {
   const boardSize = rowSize ** 2;
   const gs = Array(boardSize).fill(null);

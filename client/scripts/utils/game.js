@@ -54,8 +54,8 @@ export const setupGameState = (rowSize = 3) => {
 
 export const checkAndDeclareWinner = (gameState, player) => {
   // Should compute a game winner based on the amount of filled up cells on the board
-  if (gameState.shouldComputeWinner()) {
-    const { hasWon, winCombo } = checkPlayerWon(gameState.getCells(), player);
+  if (gameState.shouldComputeWinner) {
+    const { hasWon, winCombo } = checkPlayerWon(gameState.getCells, player);
 
     if (hasWon) {
       paintWinnerOnDom(winCombo, player);
@@ -67,7 +67,7 @@ export const checkAndDeclareWinner = (gameState, player) => {
 
 export const checkAndDeclareTie = (gameState) => {
   // Check if the complete board is filled
-  if (gameState.isBoardFilled()) {
+  if (gameState.isBoardFilled) {
     paintTieOnDom();
     return true;
   }

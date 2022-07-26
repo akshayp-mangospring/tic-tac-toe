@@ -4,18 +4,11 @@
   ],
   "env": {
     "node": true,
-    "es6": true,
-    "browser": true
+    "es6": true
   },
   "rules": {
     "no-console": "off"
   },
   "globals": {
-    "afterEach": true,
-    "beforeEach": true,
-    "Cypress": true,
-    "cy": true,
-    "describe": true,
-    "it": true
   }
 }

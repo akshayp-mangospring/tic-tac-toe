@@ -11,5 +11,11 @@
     "no-console": "off"
   },
   "globals": {
+    "afterEach": true,
+    "beforeEach": true,
+    "Cypress": true,
+    "cy": true,
+    "describe": true,
+    "it": true
   }
 }

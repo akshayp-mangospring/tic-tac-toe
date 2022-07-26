@@ -1,3 +1,4 @@
+// Below constants to be moved into a shared code folder to be shared in Front End and Back End
 const oPlayer = Object.freeze({
   marker: 'o',
   struct: '<div class="marker o-marker"></div>',

@@ -3,9 +3,9 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
-const { clientUrl, port } = require('./env');
-const { oPlayer, xPlayer } = require('../shared/constants');
-const { setupGameState } = require('../shared/game');
+const { clientUrl, port } = require('./utils/env');
+const { oPlayer, xPlayer } = require('./utils/constants');
+const { checkPlayerWon, setupGameState } = require('./utils/game');
 
 const app = express();
 app.use(cors);
@@ -21,7 +21,7 @@ const io = new Server(server, {
 });
 
 let currentPlayer = xPlayer;
-const gameState = setupGameState();
+let gameState = setupGameState();
 
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
@@ -40,19 +40,24 @@ io.on('connection', (socket) => {
       position,
       success: 200,
     });
-    currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
 
-    if (false) {
+    const { hasWon, winCombo } = checkPlayerWon(gameState.cells, currentPlayer);
+
+    if (hasWon) {
       io.emit('game_won', {
-        winCombo, player
+        winCombo, player: currentPlayer
       });
+
+      // Reset Game state after a player has won
+      gameState = setupGameState();
       return;
     }
 
-    if (false) {
+    currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
+
+    if (gameState.isBoardFilled) {
       io.emit('game_tied');
     }
-
   });
 });
 

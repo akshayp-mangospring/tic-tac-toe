@@ -26,7 +26,7 @@ const onlinePlayerGame = () => {
     placeMarkerOnDom(elem, currentPlayer);
   });
 
-  window.socket.on('game_won', (winCombo, player) => {
+  window.socket.on('game_won', ({winCombo, player}) => {
     paintWinnerOnDom(winCombo, player);
   });
 

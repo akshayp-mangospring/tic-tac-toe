@@ -21,14 +21,13 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
-  socket.on('place_marker', ({ position }) => {
+  socket.on('place_marker', ({ currentPlayer, gameState, position, }) => {
     // Server Emits to every connected client
-    console.log('=======================');
-    console.log(position);
-    console.log('=======================');
-    socket.broadcast.emit('marker_placed', {
-      success: 200,
+    io.emit('marker_placed', {
+      currentPlayer,
+      gameState,
       position,
+      success: 200,
     });
   });
 });

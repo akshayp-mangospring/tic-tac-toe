@@ -43,8 +43,8 @@ const setupGameState = (rowSize = 3) => {
 const io = new Server(server, {
   cors: {
     origin: clientUrl,
-    methods: ['GET', 'POST']
-  }
+    methods: ['GET', 'POST'],
+  },
 });
 
 let currentPlayer = xPlayer;
@@ -53,7 +53,7 @@ const gameState = setupGameState();
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
-  socket.on('place_marker', ({ position, }) => {
+  socket.on('place_marker', ({ position }) => {
     gameState.setCell(position, currentPlayer.marker);
 
     // Server Emits to every connected client

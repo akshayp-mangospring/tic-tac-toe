@@ -4,7 +4,7 @@ import {
   isCellOccupied,
   placeMarkerOnDom,
 } from '../utils/dom';
-import { checkAndDeclareTie, checkAndDeclareWinner, setupGameState } from '../utils/game';
+import { declareTie, declareWinner } from '../utils/game';
 
 const onlinePlayerGame = () => {
   const gameBoard = document.getElementById('game-board');
@@ -14,26 +14,24 @@ const onlinePlayerGame = () => {
     reloadWindow();
   });
 
-  gameBoard.addEventListener('click', (e) => {
-    const elem = e.target;
+  gameBoard.addEventListener('click', ({ target }) => {
+    if (isCellOccupied(target)) return;
 
-    // Don't perform action for already filled up cell or don't perform any action outside a cell
-    if (isCellOccupied(elem)) return;
-
-    const position = getChildIndexInParent(elem);
-
-    window.socket.emit('place_marker', { position });
+    window.socket.emit('place_marker', { position: getChildIndexInParent(target) });
   });
 
-  window.socket.on('marker_placed', ({ currentPlayer, gameState, position }) => {
+  window.socket.on('marker_placed', ({ currentPlayer, position }) => {
     const elem = document.getElementById('game-board').children[position];
 
-    // Fill in the marker on DOM
     placeMarkerOnDom(elem, currentPlayer);
+  });
 
-    if (checkAndDeclareWinner(gameState, currentPlayer)) return;
+  window.socket.on('game_won', (winCombo, player) => {
+    declareWinner(winCombo, player);
+  });
 
-    checkAndDeclareTie(gameState);
+  window.socket.on('game_tied', () => {
+    declareTie();
   });
 };
 

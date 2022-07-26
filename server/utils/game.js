@@ -1,9 +1,3 @@
-import { paintWinnerOnDom, paintTieOnDom } from './dom';
-
-// Private functions
-
-// This constant to be removed
-// Should be imported from shared directory
 const getWinCombos = () => Object.freeze([
   [0, 1, 2],
   [3, 4, 5],
@@ -37,11 +31,7 @@ const checkPlayerWon = (gameCells, { marker }) => {
   return playerWonStatus;
 };
 
-// Public exports
-
-// This constant to be removed
-// Should be imported from shared directory
-export const setupGameState = (rowSize = 3) => {
+const setupGameState = (rowSize = 3) => {
   const boardSize = rowSize ** 2;
   const gs = Array(boardSize).fill(null);
   const minCellsToFill = rowSize * 2 - 1;
@@ -58,24 +48,8 @@ export const setupGameState = (rowSize = 3) => {
   });
 };
 
-export const checkAndDeclareWinner = ({ canComputeWinner, cells }, player) => {
-  // Should compute a game winner based on the amount of filled up cells on the board
-  if (canComputeWinner()) {
-    const { hasWon, winCombo } = checkPlayerWon(cells, player);
-
-    if (hasWon) {
-      paintWinnerOnDom(winCombo, player);
-      return true;
-    }
-  }
-  return false;
-};
-
-export const checkAndDeclareTie = ({ isBoardFilled }) => {
-  // Check if the complete board is filled
-  if (isBoardFilled()) {
-    paintTieOnDom();
-    return true;
-  }
-  return false;
+module.exports = {
+  checkPlayerWon,
+  getWinCombos,
+  setupGameState,
 };

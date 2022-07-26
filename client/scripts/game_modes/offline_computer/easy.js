@@ -39,7 +39,7 @@ const offlineComputerEasy = () => {
     if (checkAndDeclareTie(gameState)) return;
 
     // Calculate the available positions on board to be filled up
-    const unfilledCells = getIndexOfAll(gameState.getCells(), null);
+    const unfilledCells = getIndexOfAll(gameState.cells, null);
     const randomEmptyCell = getRandomNumberInRange(0, unfilledCells.length - 1);
     const cellToMarkIndex = unfilledCells[randomEmptyCell];
 

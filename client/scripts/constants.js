@@ -1,11 +1,15 @@
 export const serverUrl = 'http://localhost:4000';
 
+// This constant to be removed
+// Should be imported from shared directory
 export const oPlayer = Object.freeze({
   marker: 'o',
   struct: '<div class="marker o-marker"></div>',
   name: 'Pink',
 });
 
+// This constant to be removed
+// Should be imported from shared directory
 export const xPlayer = Object.freeze({
   marker: 'x',
   struct: '<div class="marker x-marker"></div>',

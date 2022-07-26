@@ -8,6 +8,8 @@ Add test cases in Cypress for all modes of gameplay
   - Online Player mode
 Add v/s Computer mode without Minimax(Easy to Win) - Done
 Restructure code to be reused and made more readable - Done
+Add Online multi player mode with Sockets - Basic Done
+Show connection status to the user when user is online/offline - Done
 Add v/s Computer mode with Minimax(Unbeatable) algo
 Add You Won & You Lost after game is over in v/s computer case
 Add support for Prefetching game over image
@@ -16,8 +18,6 @@ Try to reduce the number of computations based on the location at which the late
   - Corner rows/columns middle cells: 2 combos to check
   - Center cells: 4 combos to check for Odd sized board(9 cells)
   - Center cells: 3 combos to check for Even sized board(16 cells)
-Add Online multi player mode with Sockets - Basic Done
-Show connection status to the user when user is online/offline - Done
 Make the board to be scalable like 4x4, 5x5, etc. With dynamic calculation of winner based on board size.
 Deploy it on Server - Try to get it deployed somewhere other than Github pages since it has a lot of shortcomings. Maybe AWS or Azure or DigitalOcean or Netlify or Heroku.
 Add a check whether an internet connnection exists, try to make it a PWA, so that player can play it offline on his own.
@@ -29,3 +29,6 @@ Dockerize this App
 Add SEO to the App so that it can be listed on Search Engines.
 Possibly monetize this App or publish the App as an npm package, so that it can be exported as an iFrame and imported in other Apps
 Share constants in client and server code
+Don't expose the socket on window object
+Code Cleanup and logic review
+Make only one connected client enabled at a time in case of online gaming. Disable the rest.

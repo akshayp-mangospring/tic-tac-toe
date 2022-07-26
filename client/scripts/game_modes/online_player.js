@@ -4,7 +4,7 @@ import {
   isCellOccupied,
   placeMarkerOnDom,
 } from '../utils/dom';
-import { declareTie, declareWinner } from '../utils/game';
+import { paintWinnerOnDom, paintTieOnDom } from '../utils/dom';
 
 const onlinePlayerGame = () => {
   const gameBoard = document.getElementById('game-board');
@@ -27,11 +27,11 @@ const onlinePlayerGame = () => {
   });
 
   window.socket.on('game_won', (winCombo, player) => {
-    declareWinner(winCombo, player);
+    paintWinnerOnDom(winCombo, player);
   });
 
   window.socket.on('game_tied', () => {
-    declareTie();
+    paintTieOnDom();
   });
 };
 

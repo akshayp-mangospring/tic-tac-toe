@@ -79,11 +79,3 @@ export const checkAndDeclareTie = ({ isBoardFilled }) => {
   }
   return false;
 };
-
-export const declareTie = () => {
-  paintTieOnDom();
-};
-
-export const declareWinner = (winCombo, player) => {
-  paintWinnerOnDom(winCombo, player);
-};

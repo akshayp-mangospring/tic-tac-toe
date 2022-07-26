@@ -4,40 +4,13 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 const { clientUrl, port } = require('./env');
+const { oPlayer, xPlayer } = require('../shared/constants');
+const { setupGameState } = require('../shared/game');
 
 const app = express();
 app.use(cors);
 
 const server = http.createServer(app);
-
-const oPlayer = Object.freeze({
-  marker: 'o',
-  struct: '<div class="marker o-marker"></div>',
-  name: 'Pink',
-});
-
-const xPlayer = Object.freeze({
-  marker: 'x',
-  struct: '<div class="marker x-marker"></div>',
-  name: 'Blue',
-});
-
-const setupGameState = (rowSize = 3) => {
-  const boardSize = rowSize ** 2;
-  const gs = Array(boardSize).fill(null);
-  const minCellsToFill = rowSize * 2 - 1;
-  let cellsFilledCount = 0;
-
-  return Object.freeze({
-    cells: gs,
-    setCell: (i, v) => {
-      gs[i] = v;
-      cellsFilledCount += 1;
-    },
-    canComputeWinner: cellsFilledCount >= minCellsToFill,
-    isBoardFilled: cellsFilledCount === boardSize,
-  });
-};
 
 // Socket Server
 const io = new Server(server, {
@@ -68,6 +41,18 @@ io.on('connection', (socket) => {
       success: 200,
     });
     currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
+
+    if (false) {
+      io.emit('game_won', {
+        winCombo, player
+      });
+      return;
+    }
+
+    if (false) {
+      io.emit('game_tied');
+    }
+
   });
 });
 

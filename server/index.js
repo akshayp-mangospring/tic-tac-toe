@@ -34,11 +34,10 @@ io.on('connection', (socket) => {
       currentPlayer,
       gameState: {
         cells: gameState.cells,
-        canComputeWinner: gameState.canComputeWinner,
-        isBoardFilled: gameState.isBoardFilled,
+        canComputeWinner: gameState.canComputeWinner(),
+        isBoardFilled: gameState.isBoardFilled(),
       },
       position,
-      success: 200,
     });
 
     const { hasWon, winCombo } = checkPlayerWon(gameState.cells, currentPlayer);
@@ -50,12 +49,13 @@ io.on('connection', (socket) => {
 
       // Reset Game state after a player has won
       gameState = setupGameState();
+      currentPlayer = xPlayer;
       return;
     }
 
     currentPlayer = currentPlayer === xPlayer ? oPlayer : xPlayer;
 
-    if (gameState.isBoardFilled) {
+    if (gameState.isBoardFilled()) {
       io.emit('game_tied');
     }
   });

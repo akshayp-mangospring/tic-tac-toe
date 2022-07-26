@@ -43,8 +43,8 @@ const setupGameState = (rowSize = 3) => {
       gs[i] = v;
       cellsFilledCount += 1;
     },
-    canComputeWinner: cellsFilledCount >= minCellsToFill,
-    isBoardFilled: cellsFilledCount === boardSize,
+    canComputeWinner: () => cellsFilledCount >= minCellsToFill,
+    isBoardFilled: () => cellsFilledCount === boardSize,
   });
 };
 

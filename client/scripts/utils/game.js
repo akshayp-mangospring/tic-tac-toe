@@ -53,14 +53,14 @@ export const setupGameState = (rowSize = 3) => {
       gs[i] = v;
       cellsFilledCount += 1;
     },
-    canComputeWinner: cellsFilledCount >= minCellsToFill,
-    isBoardFilled: cellsFilledCount === boardSize,
+    canComputeWinner: () => cellsFilledCount >= minCellsToFill,
+    isBoardFilled: () => cellsFilledCount === boardSize,
   });
 };
 
 export const checkAndDeclareWinner = ({ canComputeWinner, cells }, player) => {
   // Should compute a game winner based on the amount of filled up cells on the board
-  if (canComputeWinner) {
+  if (canComputeWinner()) {
     const { hasWon, winCombo } = checkPlayerWon(cells, player);
 
     if (hasWon) {
@@ -73,7 +73,7 @@ export const checkAndDeclareWinner = ({ canComputeWinner, cells }, player) => {
 
 export const checkAndDeclareTie = ({ isBoardFilled }) => {
   // Check if the complete board is filled
-  if (isBoardFilled) {
+  if (isBoardFilled()) {
     paintTieOnDom();
     return true;
   }

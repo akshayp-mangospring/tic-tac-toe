@@ -10,6 +10,7 @@ Add v/s Computer mode without Minimax(Easy to Win) - Done
 Restructure code to be reused and made more readable - Done
 Add Online multi player mode with Sockets - Basic Done
 Show connection status to the user when user is online/offline - Done
+Dockerize this App - Somewhat done, but need to revisit and ensure everything is right.
 Add v/s Computer mode with Minimax(Unbeatable) algo
 Add You Won & You Lost after game is over in v/s computer case
 Add support for Prefetching game over image
@@ -25,7 +26,6 @@ Add a check whether an internet connnection exists, try to make it a PWA, so tha
   - If no internet or a player chooses to play offline then the mode should be switched from online to offline
   - In offline mode the user can play v/s Computer or in `offline_players` mode.
   The same model can be applied to snake and ladders or other games I'm going to develop as well.
-Dockerize this App
 Add SEO to the App so that it can be listed on Search Engines.
 Possibly monetize this App or publish the App as an npm package, so that it can be exported as an iFrame and imported in other Apps
 Share constants in client and server code

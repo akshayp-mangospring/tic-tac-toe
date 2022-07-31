@@ -7,7 +7,6 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "npx cypress open",
     "deploy_dist": "git subtree push --prefix dist origin gh-pages"
   },
   "repository": {

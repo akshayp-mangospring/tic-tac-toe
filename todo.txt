@@ -11,6 +11,10 @@ Restructure code to be reused and made more readable - Done
 Add Online multi player mode with Sockets - Basic Done
 Show connection status to the user when user is online/offline - Done
 Dockerize this App - Somewhat done, but need to revisit and ensure everything is right.
+- Host port is not working properly for client
+- Docker compose version for me is old one(2), the latest one is 3.9
+- I have to run npm install in both client, server dirs before running `docker-compose up`
+Modify Readme make it sections based one for setup with Docker and other for Manual way
 Add v/s Computer mode with Minimax(Unbeatable) algo
 Add You Won & You Lost after game is over in v/s computer case
 Add support for Prefetching game over image

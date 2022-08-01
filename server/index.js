@@ -57,6 +57,10 @@ io.on('connection', (socket) => {
 
     if (gameState.isBoardFilled()) {
       io.emit('game_tied');
+
+      // Reset Game state after a game has tied
+      gameState = setupGameState();
+      currentPlayer = xPlayer;
     }
   });
 });

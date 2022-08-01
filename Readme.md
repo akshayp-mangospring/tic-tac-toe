@@ -2,6 +2,8 @@
 
 You can play the game on: https://akshayp-mangospring.github.io/tic-tac-toe
 
+---
+
 ## For local setup:
 
 ## Docker Way:
@@ -12,8 +14,6 @@ You can play the game on: https://akshayp-mangospring.github.io/tic-tac-toe
 ```bash
 docker compose up
 ```
-
----
 
 ## Manual Way:
 ### Prerequisites:
@@ -46,7 +46,11 @@ cd client
 npm start
 ```
 
+---
+
 Start playing locally on: **http://localhost:3000**
+
+---
 
 ## For Testing:
 ### Prerequisites:

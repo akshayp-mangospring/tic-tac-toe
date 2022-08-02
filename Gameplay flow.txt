@@ -12,8 +12,11 @@ The user can switch the mode of play from v/s Computer to two players dynamicall
 Logged in mode:
 Once the user logs in, he'll be visiting his room's url, then he can send the link to any of his friends.
 Each user would have exactly one room created for himself, at the time of user creation itself.
-Only one other user apart from the user can enter the room. Once another user enters the room is locked from any other entries.
+If someone is trying to enter my room then I would be notified about it and then if I admit them only then I will be able to play with that person. So, if there are two people in the room then no more people can enter the room, not would I be notified about the people trying to enter the room. Same flow applies when I am trying to enter another person's room.
+My room link would be displayed on my profile tooltip which'll appear on hover of my username/my profile page.
 Then the players can start playing online.
 If the user chooses to switch his mode of play from online to offline players or v/s Computer he'd be able to do so. But he'd be left from his room.
 Even after login if the user is playing in offline mode he won't be logged out, but would be told after a few(5-10) games to consider playing online.
 Offline playing mode should mimic the non logged in version of the game.
+
+The requirement which I have listed out appears like the user has one private room for himself which can be entered only with user's permission. There's no concept of room creations on the fly since there's no concept of public rooms which anyone can join. So, by not implementing public rooms I'm trying to avoid chaos in the minimum possible implementation which I want to achieve and deploy. I can scale later if I want.

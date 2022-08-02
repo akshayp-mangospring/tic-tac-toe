@@ -1,0 +1,19 @@
+Non Logged In mode:
+User visits the page and can start playing the game in v/s Computer mode.
+The first game that's offered to him would be in easy mode.
+The difficulty level would gradually increase over multiple games.
+The final version of the game to be delivered would be Minimax version.
+Once he's played the game for 5th time.
+Show the user a popup saying that he should consider playing online with real people.
+If he declines then he can continue playing.
+This mode of the game should also be supported offline. Meaning a basic PWA.
+The user can switch the mode of play from v/s Computer to two players dynamically on the fly.
+
+Logged in mode:
+Once the user logs in, he'll be visiting his room's url, then he can send the link to any of his friends.
+Each user would have exactly one room created for himself, at the time of user creation itself.
+Only one other user apart from the user can enter the room. Once another user enters the room is locked from any other entries.
+Then the players can start playing online.
+If the user chooses to switch his mode of play from online to offline players or v/s Computer he'd be able to do so. But he'd be left from his room.
+Even after login if the user is playing in offline mode he won't be logged out, but would be told after a few(5-10) games to consider playing online.
+Offline playing mode should mimic the non logged in version of the game.

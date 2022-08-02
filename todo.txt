@@ -15,7 +15,9 @@ Dockerize this App - Somewhat done, but need to revisit and ensure everything is
 - Docker compose version for me is old one(2), the latest one is 3.9 - Done
 - I have to run npm install in both client, server dirs before running `docker compose up` - Done
 Modify Readme make it sections based one for setup with Docker and other for Manual way - Done
+Add a detailed Doc of the final mode of Game - Done
 Add v/s Computer mode with Minimax(Unbeatable) algo
+Add dynamic game mode switching based on internet connection, toggle button for v/s Computer and offline players mode
 Add You Won & You Lost after game is over in v/s computer case
 Add support for Prefetching game over image
 Try to reduce the number of computations based on the location at which the latest marker was placed.

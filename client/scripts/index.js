@@ -1,6 +1,5 @@
 import initGame from './game_modes';
-import { connectionStatus, gameLevels, gameModes, serverUrl } from './constants';
-import { io } from 'socket.io-client';
+import { connectionStatus, gameLevels, gameModes } from './constants';
 
 const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
 const { EASY, HARD } = gameLevels;
@@ -59,7 +58,6 @@ function showConnectionStatus({ type }, txt) {
 }
 
 function initOnlineGame() {
-  window.socket = io.connect(serverUrl);
   initGame({
     mode: ONLINE_PLAYER,
     level: EASY,

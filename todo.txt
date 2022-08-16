@@ -10,6 +10,7 @@ Add v/s Computer mode without Minimax(Easy to Win) - Done
 Restructure code to be reused and made more readable - Done
 Add Online multi player mode with Sockets - Basic Done
 Show connection status to the user when user is online/offline - Done
+Don't expose the socket on window object - Done
 Dockerize this App - Somewhat done, but need to revisit and ensure everything is right.
 - Host port is not working properly for client - Done, needed to expose vite to be accessible over network
 - Docker compose version for me is old one(2), the latest one is 3.9 - Done
@@ -35,6 +36,5 @@ Add a check whether an internet connnection exists, try to make it a PWA, so tha
 Add SEO to the App so that it can be listed on Search Engines.
 Possibly monetize this App or publish the App as an npm package, so that it can be exported as an iFrame and imported in other Apps
 Share constants in client and server code
-Don't expose the socket on window object
 Code Cleanup and logic review
 Make only one connected client enabled at a time in case of online gaming. Disable the rest.

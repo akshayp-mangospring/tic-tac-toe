@@ -1,12 +1,20 @@
+import { socketMessages } from '../constants';
 import { reloadWindow } from '../utils';
 import {
   getChildIndexInParent,
   isCellOccupied,
-  placeMarkerOnDom,
   paintTieOnDom,
   paintWinnerOnDom,
+  placeMarkerOnDom,
 } from '../utils/dom';
 import socket from '../utils/socket';
+
+const {
+  GAME_TIED,
+  GAME_WON,
+  MARKER_PLACED,
+  PLACE_MARKER
+} = socketMessages;
 
 const onlinePlayerGame = () => {
   const gameBoard = document.getElementById('game-board');
@@ -19,20 +27,20 @@ const onlinePlayerGame = () => {
   gameBoard.addEventListener('click', ({ target }) => {
     if (isCellOccupied(target)) return;
 
-    socket.emit('place_marker', { position: getChildIndexInParent(target) });
+    socket.emit(PLACE_MARKER, { position: getChildIndexInParent(target) });
   });
 
-  socket.on('marker_placed', ({ currentPlayer, position }) => {
+  socket.on(MARKER_PLACED, ({ currentPlayer, position }) => {
     const elem = document.getElementById('game-board').children[position];
 
     placeMarkerOnDom(elem, currentPlayer);
   });
 
-  socket.on('game_won', ({ winCombo, player }) => {
+  socket.on(GAME_WON, ({ winCombo, player }) => {
     paintWinnerOnDom(winCombo, player);
   });
 
-  socket.on('game_tied', () => {
+  socket.on(GAME_TIED, () => {
     paintTieOnDom();
   });
 };

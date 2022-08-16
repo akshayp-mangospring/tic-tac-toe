@@ -32,6 +32,13 @@ export const connectionStatus = Object.freeze({
   OFFLINE: 'offline',
 });
 
+export const socketMessages = {
+  GAME_TIED:'game_tied',
+  GAME_WON:'game_won',
+  MARKER_PLACED:'marker_placed',
+  PLACE_MARKER:'place_marker',
+};
+
 const gameTiedText = "It's a tie! Play again!!";
 
 export const gameTiedHeader = `<h1 class="game-status-text">${gameTiedText}</h1>`;

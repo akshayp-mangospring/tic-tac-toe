@@ -1,5 +1,5 @@
-import initGame from './game_modes';
-import { connectionStatus, gameLevels, gameModes } from './constants';
+import initGame from '@scripts/game_modes';
+import { connectionStatus, gameLevels, gameModes } from '@scripts/constants';
 
 const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
 const { EASY, HARD } = gameLevels;

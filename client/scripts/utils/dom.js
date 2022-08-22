@@ -1,5 +1,5 @@
 import { getDomElemFromStr, reloadWindowOnTimeout } from './index';
-import { gameTiedHeader } from '../constants';
+import { gameTiedHeader } from '@scripts/constants';
 
 // Private functions
 const getSiblings = (el) => el.parentNode.children;

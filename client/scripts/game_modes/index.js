@@ -1,4 +1,4 @@
-import { gameLevels, gameModes } from '../constants';
+import { gameLevels, gameModes } from '@scripts/constants';
 import onlinePlayerGame from './online_player';
 import offlineComputerEasy from './offline_computer/easy';
 import offlineComputerHard from './offline_computer/hard';

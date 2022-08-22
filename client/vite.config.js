@@ -1,5 +1,11 @@
+const path = require('path');
 const { defineConfig } = require('vite');
 
-module.exports = defineConfig({
+export default defineConfig({
   base: './',
+  resolve: {
+    alias: {
+      '@scripts': path.resolve(__dirname, './scripts')
+    },
+  },
 });

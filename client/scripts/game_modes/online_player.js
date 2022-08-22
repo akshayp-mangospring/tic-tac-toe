@@ -1,13 +1,13 @@
-import { socketMessages } from '../constants';
-import { reloadWindow } from '../utils';
+import { socketMessages } from '@scripts/constants';
+import { reloadWindow } from '@scripts/utils';
 import {
   getChildIndexInParent,
   isCellOccupied,
   paintTieOnDom,
   paintWinnerOnDom,
   placeMarkerOnDom,
-} from '../utils/dom';
-import socket from '../utils/socket';
+} from '@scripts/utils/dom';
+import socket from '@scripts/utils/socket';
 
 const {
   GAME_TIED,

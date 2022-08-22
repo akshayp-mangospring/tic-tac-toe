@@ -5,7 +5,8 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '@scripts': path.resolve(__dirname, './scripts')
+      '@base': path.resolve(__dirname, './'),
+      '@scripts': path.resolve(__dirname, './scripts'),
     },
   },
 });

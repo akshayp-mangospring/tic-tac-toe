@@ -15,7 +15,7 @@ You can play the game on: https://akshayp-mangospring.github.io/tic-tac-toe
 docker compose up
 ```
 
-OR
+**-- OR --** (Prerequisite for starting with `npm` is NodeJS LTS or above):
 
 ```bash
 npm start
@@ -23,7 +23,7 @@ npm start
 
 ## Manual Way:
 ### Prerequisites:
-- NodeJS LTS
+- NodeJS LTS or above
 - A latest web browser(Chrome/Safari/Firefox/Edge)
 
 ### To install deps

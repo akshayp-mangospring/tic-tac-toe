@@ -4,6 +4,7 @@
   "description": "A simple Tic-Tac-Toe game",
   "main": "index.js",
   "scripts": {
+    "start": "docker compose up",
     "test": "npx cypress open"
   },
   "repository": {

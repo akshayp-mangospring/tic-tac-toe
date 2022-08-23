@@ -15,6 +15,12 @@ You can play the game on: https://akshayp-mangospring.github.io/tic-tac-toe
 docker compose up
 ```
 
+OR
+
+```bash
+npm start
+```
+
 ## Manual Way:
 ### Prerequisites:
 - NodeJS LTS

@@ -5,27 +5,12 @@ import offlineComputerHard from './offline_computer/hard';
 import offlinePlayersGame from './offline_players';
 
 const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
-const { EASY, HARD } = gameLevels;
+const { EASY } = gameLevels;
 
-const initGame = ({ mode = OFFLINE_PLAYERS, level = EASY }) => {
-  switch (mode) {
-    case ONLINE_PLAYER:
-      onlinePlayerGame();
-      break;
-    case OFFLINE_COMPUTER:
-      if (level === EASY) {
-        offlineComputerEasy();
-      } else if (level === HARD) {
-        offlineComputerHard();
-      }
-      break;
-    case OFFLINE_PLAYERS:
-      offlinePlayersGame();
-      break;
-    default:
-      console.info('NEED A MODE TO PLAY.');
-      break;
-  }
-};
+const initGame = ({ mode = OFFLINE_PLAYERS, level = EASY }) => ({
+  [ONLINE_PLAYER]: onlinePlayerGame,
+  [OFFLINE_PLAYERS]: offlinePlayersGame,
+  [OFFLINE_COMPUTER]: level === EASY ? offlineComputerEasy : offlineComputerHard,
+}[mode]());
 
 export default initGame;

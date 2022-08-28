@@ -9,10 +9,10 @@ const elemIsCell = (el) => el.classList.contains('cell');
 // Behaves like a switch statement, with the default return being ''
 // All the other returns normal according to the func arg
 const getStrikeClass = (d) => ({
-  1: 'won-horizontal',
-  2: 'won-clock-diagonal',
-  3: 'won-vertical',
-  4: 'won-anticlock-diagonal'
+  1: 'horizontal-strike',
+  2: 'clock-diagonal-strike',
+  3: 'vertical-strike',
+  4: 'anticlock-diagonal-strike'
 }[d] || '');
 
 const strikeWonCells = (winCombo) => {

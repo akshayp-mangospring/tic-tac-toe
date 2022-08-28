@@ -74,35 +74,35 @@ body {
   box-shadow: none;
 }
 
-.won-horizontal::before,
-.won-vertical::before,
-.won-clock-diagonal::before,
-.won-anticlock-diagonal::before {
+.horizontal-strike::before,
+.vertical-strike::before,
+.clock-diagonal-strike::before,
+.anticlock-diagonal-strike::before {
   content: '';
   position: absolute;
   height: var(--strike-height);
   background-color: var(--separator-color);
 }
 
-.won-horizontal::before,
-.won-vertical::before {
+.horizontal-strike::before,
+.vertical-strike::before {
   width: var(--straight-strike-width);
 }
 
-.won-clock-diagonal::before,
-.won-anticlock-diagonal::before {
+.clock-diagonal-strike::before,
+.anticlock-diagonal-strike::before {
   width: var(--diagonal-strike-width);
 }
 
-.won-vertical::before {
+.vertical-strike::before {
   transform: rotate(90deg);
 }
 
-.won-clock-diagonal::before {
+.clock-diagonal-strike::before {
   transform: rotate(135deg);
 }
 
-.won-anticlock-diagonal::before {
+.anticlock-diagonal-strike::before {
   transform: rotate(45deg);
 }
 

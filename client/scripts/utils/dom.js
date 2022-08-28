@@ -6,20 +6,14 @@ const getSiblings = (el) => el.parentNode.children;
 const cellFilledIn = (el) => el.classList.contains('filled-in');
 const elemIsCell = (el) => el.classList.contains('cell');
 
-const getStrikeClass = (diff) => {
-  switch (diff) {
-    case 1:
-      return 'won-horizontal';
-    case 2:
-      return 'won-clock-diagonal';
-    case 3:
-      return 'won-vertical';
-    case 4:
-      return 'won-anticlock-diagonal';
-    default:
-      return '';
-  }
-};
+// Behaves like a switch statement, with the default return being ''
+// All the other returns normal according to the func arg
+const getStrikeClass = (d) => ({
+  1: 'won-horizontal',
+  2: 'won-clock-diagonal',
+  3: 'won-vertical',
+  4: 'won-anticlock-diagonal'
+}[d] || '');
 
 const strikeWonCells = (winCombo) => {
   const boardCells = document.getElementsByClassName('cell');

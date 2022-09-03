@@ -4,6 +4,13 @@ import { connectionStatus, gameLevels, gameModes } from '@scripts/constants';
 const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
 const { EASY, HARD } = gameLevels;
 
+function initOnlineGame() {
+  initGame({
+    mode: ONLINE_PLAYER,
+    level: EASY,
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   switch (window.location.search) {
     // Ideally this should be the default mode based on availability of the internet
@@ -55,13 +62,6 @@ function showConnectionStatus({ type }, txt) {
       statusToast.classList.remove(showClass);
     }, 2000);
   }
-}
-
-function initOnlineGame() {
-  initGame({
-    mode: ONLINE_PLAYER,
-    level: EASY,
-  });
 }
 
 window.addEventListener(OFFLINE, (e) => {

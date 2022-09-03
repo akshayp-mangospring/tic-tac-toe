@@ -13,7 +13,7 @@ const {
   GAME_TIED,
   GAME_WON,
   MARKER_PLACED,
-  PLACE_MARKER
+  PLACE_MARKER,
 } = socketMessages;
 
 const onlinePlayerGame = () => {

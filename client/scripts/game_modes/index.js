@@ -1,14 +1,13 @@
 import { gameLevels, gameModes } from '@scripts/constants';
 import onlinePlayerGame from './online_player';
-import offlineComputerEasy from './offline_computer/easy';
-import offlineComputerHard from './offline_computer/hard';
+import offlineComputerGame from './offline_computer';
 import offlinePlayersGame from './offline_players';
 
 const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
-const { EASY, HARD } = gameLevels;
+const { EASY } = gameLevels;
 
 const initGame = (config = {
-  mode: OFFLINE_PLAYERS, level: EASY
+  mode: OFFLINE_PLAYERS, level: EASY,
 }) => {
   const { mode, level } = config;
 
@@ -17,7 +16,7 @@ const initGame = (config = {
       onlinePlayerGame();
       break;
     case OFFLINE_COMPUTER:
-      level === HARD ? offlineComputerHard() : offlineComputerEasy();
+      offlineComputerGame(level);
       break;
     case OFFLINE_PLAYERS:
       offlinePlayersGame();

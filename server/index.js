@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
 
     if (hasWon) {
       io.emit('game_won', {
-        winCombo, player: currentPlayer
+        winCombo, player: currentPlayer,
       });
 
       // Reset Game state after a player has won

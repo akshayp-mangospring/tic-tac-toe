@@ -7,7 +7,9 @@
     "start": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy_dist": "git subtree push --prefix dist origin gh-pages"
+    "lint": "npx eslint --fix scripts/**",
+    "deploy_dist": "git subtree push --prefix dist origin gh-pages",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -28,8 +30,10 @@
     "vite": "^2.9.13"
   },
   "devDependencies": {
-    "eslint": "^8.19.0",
+    "eslint": "^8.23.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1"
   }
 }

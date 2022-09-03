@@ -1,5 +1,5 @@
-import { getDomElemFromStr, reloadWindowOnTimeout } from './index';
 import { gameTiedHeader } from '@scripts/constants';
+import { getDomElemFromStr, reloadWindowOnTimeout } from './index';
 
 // Private functions
 const getSiblings = (el) => el.parentNode.children;
@@ -12,7 +12,7 @@ const getStrikeClass = (d) => ({
   1: 'horizontal-strike',
   2: 'clock-diagonal-strike',
   3: 'vertical-strike',
-  4: 'anticlock-diagonal-strike'
+  4: 'anticlock-diagonal-strike',
 }[d] || '');
 
 const strikeWonCells = (winCombo) => {

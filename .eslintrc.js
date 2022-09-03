@@ -12,4 +12,15 @@ module.exports = {
   },
   rules: {
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@base', './client'],
+          ['@scripts', './client/scripts'],
+        ],
+        extensions: ['.js', '.json'],
+      },
+    },
+  },
 };

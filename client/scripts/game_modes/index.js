@@ -8,7 +8,7 @@ const { ONLINE_PLAYER, OFFLINE_COMPUTER, OFFLINE_PLAYERS } = gameModes;
 const { EASY, HARD } = gameLevels;
 
 const initGame = (config = {
-  mode: OFFLINE_PLAYERS, level: EASY
+  mode: OFFLINE_PLAYERS, level: EASY,
 }) => {
   const { mode, level } = config;
 

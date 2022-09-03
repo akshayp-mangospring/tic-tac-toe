@@ -33,7 +33,7 @@ export const connectionStatus = Object.freeze({
 });
 
 export const socketMessages = {
-  GAME_TIED:'game_tied',
+  GAME_TIED: 'game_tied',
   GAME_WON:'game_won',
   MARKER_PLACED:'marker_placed',
   PLACE_MARKER:'place_marker',

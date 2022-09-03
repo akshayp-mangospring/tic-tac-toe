@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "docker compose up",
-    "test": "npx cypress open"
+    "test": "npx cypress open",
+    "client-lint": "npx eslint --fix client/scripts/**",
+    "server-lint": "npx eslint --fix server/scripts/**",
+    "lint": "npx eslint --fix client/scripts/**",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -25,6 +29,8 @@
     "cypress": "^10.3.0",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1"
   }
 }

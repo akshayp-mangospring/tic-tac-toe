@@ -12,6 +12,7 @@ body {
   --separator-size: max(calc(var(--board-size) * 0.005), 2px);
   --shadow-size: calc(var(--separator-size) * 2.5);
   --marker-size: calc((var(--cell-size) * 0.75) - var(--separator-size));
+  --marker-border-size: calc(var(--separator-size) * 3);
   --strike-height: calc(3 * var(--separator-size));
   --diagonal-strike-width: calc(var(--board-size) / 2.25);
   --straight-strike-width: 100%;
@@ -112,12 +113,29 @@ body {
 }
 
 .x-marker {
-  background-color: var(--x-color);
+  position: relative;
+}
+
+.x-marker:after,
+.x-marker:before {
+  content: '';
+  height: var(--marker-size);
+  border-left: var(--marker-border-size) solid var(--x-color);
+  position: absolute;
+  left: calc(50% - var(--marker-border-size));
+}
+
+.x-marker:before {
+  transform: rotate(-45deg);
+}
+
+.x-marker:after {
+  transform: rotate(45deg);
 }
 
 .o-marker {
   border-radius: 50%;
-  background-color: var(--o-color);
+  border: var(--marker-border-size) solid var(--o-color);
 }
 
 .success-pop {

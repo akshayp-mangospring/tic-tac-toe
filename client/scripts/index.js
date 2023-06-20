@@ -36,7 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Can be used for development mode
     default:
-      initOnlineGame();
+      initGame({
+        mode: OFFLINE_COMPUTER,
+        level: EASY,
+      });
       break;
   }
 });
